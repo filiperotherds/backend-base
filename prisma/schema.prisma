@@ -232,8 +232,7 @@ model Site {
 }
 
 enum PaymentMethod {
-  CREDIT_CARD
-  DEBIT_CARD
+  CARD
   BOLETO
   CASH
   PIX
