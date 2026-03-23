@@ -1,6 +1,5 @@
 import { PrismaService } from '@/database/prisma/prisma.service'
 import {
-  BadRequestException,
   ConflictException,
   Injectable,
   UnauthorizedException,
@@ -34,19 +33,22 @@ export class AuthService {
     })
 
     if (!user) {
-      throw new UnauthorizedException('User credentials do not match.')
+      throw new UnauthorizedException('Credenciais inválidas.')
     }
 
     const isPasswordValid = await compare(password, user.password)
 
     if (!isPasswordValid) {
-      throw new UnauthorizedException('User credentials do not match.')
+      throw new UnauthorizedException('Credenciais inválidas.')
     }
 
     const payload = {
       sub: user.id,
       orgId: user.member?.organizationId,
       iss: 'workee.auth',
+      data: {
+        onboarding_completed: user.onboardingCompleted,
+      },
     }
 
     const accessToken = await this.jwt.signAsync(payload)
@@ -56,7 +58,7 @@ export class AuthService {
     }
   }
 
-  async singup({ name, email, password }: SignUpBodySchema) {
+  async singup({ email, password }: SignUpBodySchema) {
     const userExists = await this.prisma.user.findFirst({
       where: {
         email,
@@ -72,7 +74,6 @@ export class AuthService {
     await this.prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
         data: {
-          name,
           email,
           password: hashedPassword,
         },

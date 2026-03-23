@@ -7,6 +7,11 @@ import z from 'zod'
 
 const tokenPayloadSchema = z.object({
   sub: z.string().uuid(),
+  orgId: z.string().uuid().optional().nullable(),
+  iss: z.string().optional(),
+  data: z.object({
+    onboarding_completed: z.boolean(),
+  }),
 })
 
 export type TokenPayload = z.infer<typeof tokenPayloadSchema>
