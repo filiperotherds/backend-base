@@ -27,39 +27,30 @@ export type AggregateOrganization = {
 export type OrganizationMinAggregateOutputType = {
   id: string | null
   name: string | null
-  domain: string | null
-  shouldAttachUsersByDomain: boolean | null
+  cnpj: string | null
   avatarUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  cpfCnpj: string | null
-  email: string | null
   ownerId: string | null
 }
 
 export type OrganizationMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  domain: string | null
-  shouldAttachUsersByDomain: boolean | null
+  cnpj: string | null
   avatarUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  cpfCnpj: string | null
-  email: string | null
   ownerId: string | null
 }
 
 export type OrganizationCountAggregateOutputType = {
   id: number
   name: number
-  domain: number
-  shouldAttachUsersByDomain: number
+  cnpj: number
   avatarUrl: number
   createdAt: number
   updatedAt: number
-  cpfCnpj: number
-  email: number
   ownerId: number
   _all: number
 }
@@ -68,39 +59,30 @@ export type OrganizationCountAggregateOutputType = {
 export type OrganizationMinAggregateInputType = {
   id?: true
   name?: true
-  domain?: true
-  shouldAttachUsersByDomain?: true
+  cnpj?: true
   avatarUrl?: true
   createdAt?: true
   updatedAt?: true
-  cpfCnpj?: true
-  email?: true
   ownerId?: true
 }
 
 export type OrganizationMaxAggregateInputType = {
   id?: true
   name?: true
-  domain?: true
-  shouldAttachUsersByDomain?: true
+  cnpj?: true
   avatarUrl?: true
   createdAt?: true
   updatedAt?: true
-  cpfCnpj?: true
-  email?: true
   ownerId?: true
 }
 
 export type OrganizationCountAggregateInputType = {
   id?: true
   name?: true
-  domain?: true
-  shouldAttachUsersByDomain?: true
+  cnpj?: true
   avatarUrl?: true
   createdAt?: true
   updatedAt?: true
-  cpfCnpj?: true
-  email?: true
   ownerId?: true
   _all?: true
 }
@@ -180,13 +162,10 @@ export type OrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type OrganizationGroupByOutputType = {
   id: string
   name: string | null
-  domain: string | null
-  shouldAttachUsersByDomain: boolean
+  cnpj: string | null
   avatarUrl: string | null
   createdAt: Date
   updatedAt: Date
-  cpfCnpj: string | null
-  email: string | null
   ownerId: string
   _count: OrganizationCountAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
@@ -214,13 +193,10 @@ export type OrganizationWhereInput = {
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   id?: Prisma.StringFilter<"Organization"> | string
   name?: Prisma.StringNullableFilter<"Organization"> | string | null
-  domain?: Prisma.StringNullableFilter<"Organization"> | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFilter<"Organization"> | boolean
+  cnpj?: Prisma.StringNullableFilter<"Organization"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"Organization"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
-  cpfCnpj?: Prisma.StringNullableFilter<"Organization"> | string | null
-  email?: Prisma.StringNullableFilter<"Organization"> | string | null
   ownerId?: Prisma.StringFilter<"Organization"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.AddressListRelationFilter
@@ -230,13 +206,10 @@ export type OrganizationWhereInput = {
 export type OrganizationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  domain?: Prisma.SortOrderInput | Prisma.SortOrder
-  shouldAttachUsersByDomain?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  cpfCnpj?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
   address?: Prisma.AddressOrderByRelationAggregateInput
@@ -245,33 +218,27 @@ export type OrganizationOrderByWithRelationInput = {
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  domain?: string
-  cpfCnpj?: string
-  email?: string
+  cnpj?: string
   ownerId?: string
   AND?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   OR?: Prisma.OrganizationWhereInput[]
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   name?: Prisma.StringNullableFilter<"Organization"> | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFilter<"Organization"> | boolean
   avatarUrl?: Prisma.StringNullableFilter<"Organization"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.AddressListRelationFilter
   estimates?: Prisma.EstimateListRelationFilter
-}, "id" | "domain" | "cpfCnpj" | "email" | "ownerId">
+}, "id" | "cnpj" | "ownerId">
 
 export type OrganizationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  domain?: Prisma.SortOrderInput | Prisma.SortOrder
-  shouldAttachUsersByDomain?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  cpfCnpj?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   _count?: Prisma.OrganizationCountOrderByAggregateInput
   _max?: Prisma.OrganizationMaxOrderByAggregateInput
@@ -284,26 +251,20 @@ export type OrganizationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.OrganizationScalarWhereWithAggregatesInput | Prisma.OrganizationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  domain?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolWithAggregatesFilter<"Organization"> | boolean
+  cnpj?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Organization"> | Date | string
-  cpfCnpj?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
-  email?: Prisma.StringNullableWithAggregatesFilter<"Organization"> | string | null
   ownerId?: Prisma.StringWithAggregatesFilter<"Organization"> | string
 }
 
 export type OrganizationCreateInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   owner: Prisma.UserCreateNestedOneWithoutOrganizationInput
   address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
@@ -312,13 +273,10 @@ export type OrganizationCreateInput = {
 export type OrganizationUncheckedCreateInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   ownerId: string
   address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
@@ -327,13 +285,10 @@ export type OrganizationUncheckedCreateInput = {
 export type OrganizationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationNestedInput
   address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
@@ -342,13 +297,10 @@ export type OrganizationUpdateInput = {
 export type OrganizationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -357,38 +309,29 @@ export type OrganizationUncheckedUpdateInput = {
 export type OrganizationCreateManyInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   ownerId: string
 }
 
 export type OrganizationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrganizationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -400,39 +343,30 @@ export type OrganizationNullableScalarRelationFilter = {
 export type OrganizationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  domain?: Prisma.SortOrder
-  shouldAttachUsersByDomain?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  cpfCnpj?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
 }
 
 export type OrganizationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  domain?: Prisma.SortOrder
-  shouldAttachUsersByDomain?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  cpfCnpj?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
 }
 
 export type OrganizationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  domain?: Prisma.SortOrder
-  shouldAttachUsersByDomain?: Prisma.SortOrder
+  cnpj?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  cpfCnpj?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
 }
 
@@ -503,13 +437,10 @@ export type OrganizationUpdateOneWithoutEstimatesNestedInput = {
 export type OrganizationCreateWithoutOwnerInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
 }
@@ -517,13 +448,10 @@ export type OrganizationCreateWithoutOwnerInput = {
 export type OrganizationUncheckedCreateWithoutOwnerInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
 }
@@ -547,13 +475,10 @@ export type OrganizationUpdateToOneWithWhereWithoutOwnerInput = {
 export type OrganizationUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
 }
@@ -561,13 +486,10 @@ export type OrganizationUpdateWithoutOwnerInput = {
 export type OrganizationUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
@@ -575,13 +497,10 @@ export type OrganizationUncheckedUpdateWithoutOwnerInput = {
 export type OrganizationCreateWithoutAddressInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   owner: Prisma.UserCreateNestedOneWithoutOrganizationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
 }
@@ -589,13 +508,10 @@ export type OrganizationCreateWithoutAddressInput = {
 export type OrganizationUncheckedCreateWithoutAddressInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   ownerId: string
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
 }
@@ -619,13 +535,10 @@ export type OrganizationUpdateToOneWithWhereWithoutAddressInput = {
 export type OrganizationUpdateWithoutAddressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
 }
@@ -633,13 +546,10 @@ export type OrganizationUpdateWithoutAddressInput = {
 export type OrganizationUncheckedUpdateWithoutAddressInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
 }
@@ -647,13 +557,10 @@ export type OrganizationUncheckedUpdateWithoutAddressInput = {
 export type OrganizationCreateWithoutEstimatesInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   owner: Prisma.UserCreateNestedOneWithoutOrganizationInput
   address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
 }
@@ -661,13 +568,10 @@ export type OrganizationCreateWithoutEstimatesInput = {
 export type OrganizationUncheckedCreateWithoutEstimatesInput = {
   id?: string
   name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: string | null
   avatarUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
   ownerId: string
   address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
 }
@@ -691,13 +595,10 @@ export type OrganizationUpdateToOneWithWhereWithoutEstimatesInput = {
 export type OrganizationUpdateWithoutEstimatesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationNestedInput
   address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
 }
@@ -705,13 +606,10 @@ export type OrganizationUpdateWithoutEstimatesInput = {
 export type OrganizationUncheckedUpdateWithoutEstimatesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
 }
@@ -759,13 +657,10 @@ export type OrganizationCountOutputTypeCountEstimatesArgs<ExtArgs extends runtim
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  domain?: boolean
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: boolean
   avatarUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  cpfCnpj?: boolean
-  email?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.Organization$addressArgs<ExtArgs>
@@ -776,13 +671,10 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  domain?: boolean
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: boolean
   avatarUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  cpfCnpj?: boolean
-  email?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
@@ -790,13 +682,10 @@ export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  domain?: boolean
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: boolean
   avatarUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  cpfCnpj?: boolean
-  email?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
@@ -804,17 +693,14 @@ export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type OrganizationSelectScalar = {
   id?: boolean
   name?: boolean
-  domain?: boolean
-  shouldAttachUsersByDomain?: boolean
+  cnpj?: boolean
   avatarUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  cpfCnpj?: boolean
-  email?: boolean
   ownerId?: boolean
 }
 
-export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "domain" | "shouldAttachUsersByDomain" | "avatarUrl" | "createdAt" | "updatedAt" | "cpfCnpj" | "email" | "ownerId", ExtArgs["result"]["organization"]>
+export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "cnpj" | "avatarUrl" | "createdAt" | "updatedAt" | "ownerId", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.Organization$addressArgs<ExtArgs>
@@ -838,13 +724,10 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string | null
-    domain: string | null
-    shouldAttachUsersByDomain: boolean
+    cnpj: string | null
     avatarUrl: string | null
     createdAt: Date
     updatedAt: Date
-    cpfCnpj: string | null
-    email: string | null
     ownerId: string
   }, ExtArgs["result"]["organization"]>
   composites: {}
@@ -1274,13 +1157,10 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
 export interface OrganizationFieldRefs {
   readonly id: Prisma.FieldRef<"Organization", 'String'>
   readonly name: Prisma.FieldRef<"Organization", 'String'>
-  readonly domain: Prisma.FieldRef<"Organization", 'String'>
-  readonly shouldAttachUsersByDomain: Prisma.FieldRef<"Organization", 'Boolean'>
+  readonly cnpj: Prisma.FieldRef<"Organization", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"Organization", 'String'>
   readonly createdAt: Prisma.FieldRef<"Organization", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Organization", 'DateTime'>
-  readonly cpfCnpj: Prisma.FieldRef<"Organization", 'String'>
-  readonly email: Prisma.FieldRef<"Organization", 'String'>
   readonly ownerId: Prisma.FieldRef<"Organization", 'String'>
 }
     

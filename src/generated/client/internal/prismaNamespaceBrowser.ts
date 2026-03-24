@@ -82,7 +82,9 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
+  cpf: 'cpf',
   avatarUrl: 'avatarUrl',
+  birthDate: 'birthDate',
   onboardingCompleted: 'onboardingCompleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -112,13 +114,10 @@ export type TokenScalarFieldEnum = (typeof TokenScalarFieldEnum)[keyof typeof To
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  domain: 'domain',
-  shouldAttachUsersByDomain: 'shouldAttachUsersByDomain',
+  cnpj: 'cnpj',
   avatarUrl: 'avatarUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  cpfCnpj: 'cpfCnpj',
-  email: 'email',
   ownerId: 'ownerId'
 } as const
 
