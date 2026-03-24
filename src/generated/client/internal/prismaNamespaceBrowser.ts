@@ -54,17 +54,11 @@ export const ModelName = {
   User: 'User',
   UserProfile: 'UserProfile',
   Token: 'Token',
-  Invite: 'Invite',
-  Member: 'Member',
   Organization: 'Organization',
   Address: 'Address',
   Service: 'Service',
   Project: 'Project',
-  Estimate: 'Estimate',
-  Customer: 'Customer',
-  EstimateItem: 'EstimateItem',
-  Product: 'Product',
-  Site: 'Site'
+  Estimate: 'Estimate'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -113,28 +107,6 @@ export const TokenScalarFieldEnum = {
 } as const
 
 export type TokenScalarFieldEnum = (typeof TokenScalarFieldEnum)[keyof typeof TokenScalarFieldEnum]
-
-
-export const InviteScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  role: 'role',
-  createdAt: 'createdAt',
-  authorId: 'authorId',
-  organizationId: 'organizationId'
-} as const
-
-export type InviteScalarFieldEnum = (typeof InviteScalarFieldEnum)[keyof typeof InviteScalarFieldEnum]
-
-
-export const MemberScalarFieldEnum = {
-  id: 'id',
-  role: 'role',
-  userId: 'userId',
-  organizationId: 'organizationId'
-} as const
-
-export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
 
 
 export const OrganizationScalarFieldEnum = {
@@ -202,69 +174,14 @@ export const EstimateScalarFieldEnum = {
   status: 'status',
   createdAt: 'createdAt',
   deliveryDeadline: 'deliveryDeadline',
-  paymentMethod: 'paymentMethod',
   installments: 'installments',
   downPayment: 'downPayment',
   validity: 'validity',
   warrantyTerms: 'warrantyTerms',
-  organizationId: 'organizationId',
-  customerId: 'customerId'
+  organizationId: 'organizationId'
 } as const
 
 export type EstimateScalarFieldEnum = (typeof EstimateScalarFieldEnum)[keyof typeof EstimateScalarFieldEnum]
-
-
-export const CustomerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  address: 'address',
-  phone: 'phone',
-  email: 'email',
-  organizationId: 'organizationId'
-} as const
-
-export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
-
-
-export const EstimateItemScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  quantity: 'quantity',
-  unitValue: 'unitValue',
-  estimateId: 'estimateId',
-  productId: 'productId'
-} as const
-
-export type EstimateItemScalarFieldEnum = (typeof EstimateItemScalarFieldEnum)[keyof typeof EstimateItemScalarFieldEnum]
-
-
-export const ProductScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  price: 'price',
-  active: 'active',
-  organizationId: 'organizationId'
-} as const
-
-export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
-
-
-export const SiteScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  slug: 'slug',
-  avatarUrl: 'avatarUrl',
-  phone: 'phone',
-  email: 'email',
-  city: 'city',
-  latitude: 'latitude',
-  longitude: 'longitude',
-  active: 'active',
-  organizationId: 'organizationId'
-} as const
-
-export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -15,9 +15,9 @@ export class GetOrganizationController {
       throw new BadRequestException('Missing params')
     }
 
-    const membership =
+    const organization =
       await this.organizationsService.getOrganizationByUserId(sub)
 
-    return membership
+    return organization
   }
 }

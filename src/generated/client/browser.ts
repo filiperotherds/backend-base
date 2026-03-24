@@ -33,16 +33,6 @@ export type UserProfile = Prisma.UserProfileModel
  */
 export type Token = Prisma.TokenModel
 /**
- * Model Invite
- * 
- */
-export type Invite = Prisma.InviteModel
-/**
- * Model Member
- * 
- */
-export type Member = Prisma.MemberModel
-/**
  * Model Organization
  * 
  */
@@ -67,23 +57,3 @@ export type Project = Prisma.ProjectModel
  * 
  */
 export type Estimate = Prisma.EstimateModel
-/**
- * Model Customer
- * 
- */
-export type Customer = Prisma.CustomerModel
-/**
- * Model EstimateItem
- * 
- */
-export type EstimateItem = Prisma.EstimateItemModel
-/**
- * Model Product
- * 
- */
-export type Product = Prisma.ProductModel
-/**
- * Model Site
- * 
- */
-export type Site = Prisma.SiteModel

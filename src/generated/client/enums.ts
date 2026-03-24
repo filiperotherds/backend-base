@@ -9,17 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const PaymentMethod = {
-  CARD: 'CARD',
-  BOLETO: 'BOLETO',
-  CASH: 'CASH',
-  PIX: 'PIX',
-  TRANSFER: 'TRANSFER'
-} as const
-
-export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
-
-
 export const TokenType = {
   PASSWORD_RECOVER: 'PASSWORD_RECOVER'
 } as const
@@ -34,11 +23,3 @@ export const EstimateStatus = {
 } as const
 
 export type EstimateStatus = (typeof EstimateStatus)[keyof typeof EstimateStatus]
-
-
-export const Role = {
-  ADMIN: 'ADMIN',
-  MEMBER: 'MEMBER'
-} as const
-
-export type Role = (typeof Role)[keyof typeof Role]

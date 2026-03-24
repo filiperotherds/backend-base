@@ -6,39 +6,28 @@ export class EstimatesService {
   constructor(private prisma: PrismaService) {}
 
   async getOrganizationEstimates(sub: string) {
-    const result = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: {
         id: sub,
       },
       select: {
-        member: {
+        organization: {
           select: {
-            organizationId: true,
+            id: true,
           },
         },
       },
     })
 
-    if (!result?.member) {
+    if (!user?.organization) {
       throw new BadRequestException('Organization Not Found.')
     }
 
-    const { organizationId } = result.member
+    const { id: organizationId } = user.organization
 
     const estimates = await this.prisma.estimate.findMany({
       where: {
         organizationId,
-      },
-      include: {
-        customer: {
-          select: {
-            name: true,
-            address: true,
-            email: true,
-            phone: true,
-          },
-        },
-        items: true,
       },
     })
 

@@ -2,6 +2,7 @@ import { PrismaService } from '@/database/prisma/prisma.service'
 import {
   ConflictException,
   Injectable,
+  BadRequestException,
   UnauthorizedException,
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
@@ -23,13 +24,6 @@ export class AuthService {
       where: {
         email,
       },
-      include: {
-        member: {
-          select: {
-            organizationId: true,
-          },
-        },
-      },
     })
 
     if (!user) {
@@ -44,7 +38,6 @@ export class AuthService {
 
     const payload = {
       sub: user.id,
-      orgId: user.member?.organizationId,
       iss: 'workee.auth',
       data: {
         onboarding_completed: user.onboardingCompleted,
@@ -87,5 +80,30 @@ export class AuthService {
     })
   }
 
-  async getUserMembership(@CurrentUser() { sub }: TokenPayload) {}
+  async getUserMembership(@CurrentUser() { sub }: TokenPayload) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: sub,
+      },
+      select: {
+        organization: {
+          select: {
+            id: true,
+            name: true,
+            avatarUrl: true,
+            cpfCnpj: true,
+            email: true,
+          },
+        },
+      },
+    })
+
+    if (!user?.organization) {
+      throw new BadRequestException('Organization Not Found.')
+    }
+
+    return {
+      organization: user.organization,
+    }
+  }
 }

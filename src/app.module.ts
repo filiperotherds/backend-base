@@ -6,7 +6,6 @@ import { AuthModule } from './modules/auth/auth.module'
 import { UsersModule } from './modules/users/users.module'
 import { OrganizationsModule } from './modules/organizations/organizations.module'
 import { EstimatesModule } from './modules/estimates/estimates.module'
-import { SitesModule } from './modules/sites/sites.module'
 
 @Module({
   imports: [
@@ -18,7 +17,6 @@ import { SitesModule } from './modules/sites/sites.module'
     UsersModule,
     OrganizationsModule,
     EstimatesModule,
-    SitesModule,
   ],
   controllers: [],
   providers: [PrismaService],

@@ -6,43 +6,29 @@ export class OrganizationsService {
   constructor(private prisma: PrismaService) {}
 
   async getOrganizationByUserId(id: string) {
-    const result = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: {
         id,
       },
       select: {
-        member: {
+        organization: {
           select: {
-            organizationId: true,
-            role: true,
+            id: true,
+            name: true,
+            avatarUrl: true,
+            cpfCnpj: true,
+            email: true,
           },
         },
       },
     })
 
-    if (!result?.member) {
-      throw new BadRequestException('Member Not Found.')
+    if (!user?.organization) {
+      throw new BadRequestException('Organization Not Found.')
     }
 
-    const { organizationId, role } = result.member
-
-    const organization = await this.prisma.organization.findUnique({
-      select: {
-        name: true,
-        avatarUrl: true,
-        cpfCnpj: true,
-        email: true,
-      },
-      where: {
-        id: organizationId,
-      },
-    })
-
-    const ctx = {
-      organization,
-      role,
+    return {
+      organization: user.organization,
     }
-
-    return ctx
   }
 }

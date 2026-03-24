@@ -45,13 +45,11 @@ export type EstimateMinAggregateOutputType = {
   status: $Enums.EstimateStatus | null
   createdAt: Date | null
   deliveryDeadline: Date | null
-  paymentMethod: $Enums.PaymentMethod | null
   installments: number | null
   downPayment: runtime.Decimal | null
   validity: Date | null
   warrantyTerms: string | null
   organizationId: string | null
-  customerId: string | null
 }
 
 export type EstimateMaxAggregateOutputType = {
@@ -61,13 +59,11 @@ export type EstimateMaxAggregateOutputType = {
   status: $Enums.EstimateStatus | null
   createdAt: Date | null
   deliveryDeadline: Date | null
-  paymentMethod: $Enums.PaymentMethod | null
   installments: number | null
   downPayment: runtime.Decimal | null
   validity: Date | null
   warrantyTerms: string | null
   organizationId: string | null
-  customerId: string | null
 }
 
 export type EstimateCountAggregateOutputType = {
@@ -77,13 +73,11 @@ export type EstimateCountAggregateOutputType = {
   status: number
   createdAt: number
   deliveryDeadline: number
-  paymentMethod: number
   installments: number
   downPayment: number
   validity: number
   warrantyTerms: number
   organizationId: number
-  customerId: number
   _all: number
 }
 
@@ -107,13 +101,11 @@ export type EstimateMinAggregateInputType = {
   status?: true
   createdAt?: true
   deliveryDeadline?: true
-  paymentMethod?: true
   installments?: true
   downPayment?: true
   validity?: true
   warrantyTerms?: true
   organizationId?: true
-  customerId?: true
 }
 
 export type EstimateMaxAggregateInputType = {
@@ -123,13 +115,11 @@ export type EstimateMaxAggregateInputType = {
   status?: true
   createdAt?: true
   deliveryDeadline?: true
-  paymentMethod?: true
   installments?: true
   downPayment?: true
   validity?: true
   warrantyTerms?: true
   organizationId?: true
-  customerId?: true
 }
 
 export type EstimateCountAggregateInputType = {
@@ -139,13 +129,11 @@ export type EstimateCountAggregateInputType = {
   status?: true
   createdAt?: true
   deliveryDeadline?: true
-  paymentMethod?: true
   installments?: true
   downPayment?: true
   validity?: true
   warrantyTerms?: true
   organizationId?: true
-  customerId?: true
   _all?: true
 }
 
@@ -242,13 +230,11 @@ export type EstimateGroupByOutputType = {
   status: $Enums.EstimateStatus
   createdAt: Date
   deliveryDeadline: Date | null
-  paymentMethod: $Enums.PaymentMethod
   installments: number
   downPayment: runtime.Decimal | null
   validity: Date | null
   warrantyTerms: string | null
   organizationId: string | null
-  customerId: string | null
   _count: EstimateCountAggregateOutputType | null
   _avg: EstimateAvgAggregateOutputType | null
   _sum: EstimateSumAggregateOutputType | null
@@ -281,16 +267,12 @@ export type EstimateWhereInput = {
   status?: Prisma.EnumEstimateStatusFilter<"Estimate"> | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
   deliveryDeadline?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFilter<"Estimate"> | $Enums.PaymentMethod
   installments?: Prisma.IntFilter<"Estimate"> | number
   downPayment?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   warrantyTerms?: Prisma.StringNullableFilter<"Estimate"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  customerId?: Prisma.StringNullableFilter<"Estimate"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  items?: Prisma.EstimateItemListRelationFilter
 }
 
 export type EstimateOrderByWithRelationInput = {
@@ -300,16 +282,12 @@ export type EstimateOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   deliveryDeadline?: Prisma.SortOrderInput | Prisma.SortOrder
-  paymentMethod?: Prisma.SortOrder
   installments?: Prisma.SortOrder
   downPayment?: Prisma.SortOrderInput | Prisma.SortOrder
   validity?: Prisma.SortOrderInput | Prisma.SortOrder
   warrantyTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
-  customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
-  customer?: Prisma.CustomerOrderByWithRelationInput
-  items?: Prisma.EstimateItemOrderByRelationAggregateInput
 }
 
 export type EstimateWhereUniqueInput = Prisma.AtLeast<{
@@ -323,16 +301,12 @@ export type EstimateWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumEstimateStatusFilter<"Estimate"> | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
   deliveryDeadline?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFilter<"Estimate"> | $Enums.PaymentMethod
   installments?: Prisma.IntFilter<"Estimate"> | number
   downPayment?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   warrantyTerms?: Prisma.StringNullableFilter<"Estimate"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  customerId?: Prisma.StringNullableFilter<"Estimate"> | string | null
   organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  items?: Prisma.EstimateItemListRelationFilter
 }, "id" | "organizationId_estimateNo">
 
 export type EstimateOrderByWithAggregationInput = {
@@ -342,13 +316,11 @@ export type EstimateOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   deliveryDeadline?: Prisma.SortOrderInput | Prisma.SortOrder
-  paymentMethod?: Prisma.SortOrder
   installments?: Prisma.SortOrder
   downPayment?: Prisma.SortOrderInput | Prisma.SortOrder
   validity?: Prisma.SortOrderInput | Prisma.SortOrder
   warrantyTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrderInput | Prisma.SortOrder
-  customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EstimateCountOrderByAggregateInput
   _avg?: Prisma.EstimateAvgOrderByAggregateInput
   _max?: Prisma.EstimateMaxOrderByAggregateInput
@@ -366,13 +338,11 @@ export type EstimateScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumEstimateStatusWithAggregatesFilter<"Estimate"> | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Estimate"> | Date | string
   deliveryDeadline?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodWithAggregatesFilter<"Estimate"> | $Enums.PaymentMethod
   installments?: Prisma.IntWithAggregatesFilter<"Estimate"> | number
   downPayment?: Prisma.DecimalNullableWithAggregatesFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.DateTimeNullableWithAggregatesFilter<"Estimate"> | Date | string | null
   warrantyTerms?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
   organizationId?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
-  customerId?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
 }
 
 export type EstimateCreateInput = {
@@ -382,14 +352,11 @@ export type EstimateCreateInput = {
   status?: $Enums.EstimateStatus
   createdAt?: Date | string
   deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
   installments?: number
   downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Date | string | null
   warrantyTerms?: string | null
   organization?: Prisma.OrganizationCreateNestedOneWithoutEstimatesInput
-  customer?: Prisma.CustomerCreateNestedOneWithoutEstimatesInput
-  items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateInput = {
@@ -399,14 +366,11 @@ export type EstimateUncheckedCreateInput = {
   status?: $Enums.EstimateStatus
   createdAt?: Date | string
   deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
   installments?: number
   downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Date | string | null
   warrantyTerms?: string | null
   organizationId?: string | null
-  customerId?: string | null
-  items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUpdateInput = {
@@ -416,14 +380,11 @@ export type EstimateUpdateInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organization?: Prisma.OrganizationUpdateOneWithoutEstimatesNestedInput
-  customer?: Prisma.CustomerUpdateOneWithoutEstimatesNestedInput
-  items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateInput = {
@@ -433,14 +394,11 @@ export type EstimateUncheckedUpdateInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateManyInput = {
@@ -450,13 +408,11 @@ export type EstimateCreateManyInput = {
   status?: $Enums.EstimateStatus
   createdAt?: Date | string
   deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
   installments?: number
   downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Date | string | null
   warrantyTerms?: string | null
   organizationId?: string | null
-  customerId?: string | null
 }
 
 export type EstimateUpdateManyMutationInput = {
@@ -466,7 +422,6 @@ export type EstimateUpdateManyMutationInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -480,13 +435,11 @@ export type EstimateUncheckedUpdateManyInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EstimateListRelationFilter = {
@@ -511,13 +464,11 @@ export type EstimateCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   deliveryDeadline?: Prisma.SortOrder
-  paymentMethod?: Prisma.SortOrder
   installments?: Prisma.SortOrder
   downPayment?: Prisma.SortOrder
   validity?: Prisma.SortOrder
   warrantyTerms?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
 }
 
 export type EstimateAvgOrderByAggregateInput = {
@@ -533,13 +484,11 @@ export type EstimateMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   deliveryDeadline?: Prisma.SortOrder
-  paymentMethod?: Prisma.SortOrder
   installments?: Prisma.SortOrder
   downPayment?: Prisma.SortOrder
   validity?: Prisma.SortOrder
   warrantyTerms?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
 }
 
 export type EstimateMinOrderByAggregateInput = {
@@ -549,24 +498,17 @@ export type EstimateMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   deliveryDeadline?: Prisma.SortOrder
-  paymentMethod?: Prisma.SortOrder
   installments?: Prisma.SortOrder
   downPayment?: Prisma.SortOrder
   validity?: Prisma.SortOrder
   warrantyTerms?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
 }
 
 export type EstimateSumOrderByAggregateInput = {
   estimateNo?: Prisma.SortOrder
   installments?: Prisma.SortOrder
   downPayment?: Prisma.SortOrder
-}
-
-export type EstimateScalarRelationFilter = {
-  is?: Prisma.EstimateWhereInput
-  isNot?: Prisma.EstimateWhereInput
 }
 
 export type EstimateCreateNestedManyWithoutOrganizationInput = {
@@ -627,72 +569,12 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type EnumPaymentMethodFieldUpdateOperationsInput = {
-  set?: $Enums.PaymentMethod
-}
-
 export type NullableDecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
-export type EstimateCreateNestedManyWithoutCustomerInput = {
-  create?: Prisma.XOR<Prisma.EstimateCreateWithoutCustomerInput, Prisma.EstimateUncheckedCreateWithoutCustomerInput> | Prisma.EstimateCreateWithoutCustomerInput[] | Prisma.EstimateUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutCustomerInput | Prisma.EstimateCreateOrConnectWithoutCustomerInput[]
-  createMany?: Prisma.EstimateCreateManyCustomerInputEnvelope
-  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-}
-
-export type EstimateUncheckedCreateNestedManyWithoutCustomerInput = {
-  create?: Prisma.XOR<Prisma.EstimateCreateWithoutCustomerInput, Prisma.EstimateUncheckedCreateWithoutCustomerInput> | Prisma.EstimateCreateWithoutCustomerInput[] | Prisma.EstimateUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutCustomerInput | Prisma.EstimateCreateOrConnectWithoutCustomerInput[]
-  createMany?: Prisma.EstimateCreateManyCustomerInputEnvelope
-  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-}
-
-export type EstimateUpdateManyWithoutCustomerNestedInput = {
-  create?: Prisma.XOR<Prisma.EstimateCreateWithoutCustomerInput, Prisma.EstimateUncheckedCreateWithoutCustomerInput> | Prisma.EstimateCreateWithoutCustomerInput[] | Prisma.EstimateUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutCustomerInput | Prisma.EstimateCreateOrConnectWithoutCustomerInput[]
-  upsert?: Prisma.EstimateUpsertWithWhereUniqueWithoutCustomerInput | Prisma.EstimateUpsertWithWhereUniqueWithoutCustomerInput[]
-  createMany?: Prisma.EstimateCreateManyCustomerInputEnvelope
-  set?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  disconnect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  delete?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  update?: Prisma.EstimateUpdateWithWhereUniqueWithoutCustomerInput | Prisma.EstimateUpdateWithWhereUniqueWithoutCustomerInput[]
-  updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutCustomerInput | Prisma.EstimateUpdateManyWithWhereWithoutCustomerInput[]
-  deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
-}
-
-export type EstimateUncheckedUpdateManyWithoutCustomerNestedInput = {
-  create?: Prisma.XOR<Prisma.EstimateCreateWithoutCustomerInput, Prisma.EstimateUncheckedCreateWithoutCustomerInput> | Prisma.EstimateCreateWithoutCustomerInput[] | Prisma.EstimateUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutCustomerInput | Prisma.EstimateCreateOrConnectWithoutCustomerInput[]
-  upsert?: Prisma.EstimateUpsertWithWhereUniqueWithoutCustomerInput | Prisma.EstimateUpsertWithWhereUniqueWithoutCustomerInput[]
-  createMany?: Prisma.EstimateCreateManyCustomerInputEnvelope
-  set?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  disconnect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  delete?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  connect?: Prisma.EstimateWhereUniqueInput | Prisma.EstimateWhereUniqueInput[]
-  update?: Prisma.EstimateUpdateWithWhereUniqueWithoutCustomerInput | Prisma.EstimateUpdateWithWhereUniqueWithoutCustomerInput[]
-  updateMany?: Prisma.EstimateUpdateManyWithWhereWithoutCustomerInput | Prisma.EstimateUpdateManyWithWhereWithoutCustomerInput[]
-  deleteMany?: Prisma.EstimateScalarWhereInput | Prisma.EstimateScalarWhereInput[]
-}
-
-export type EstimateCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.EstimateCreateWithoutItemsInput, Prisma.EstimateUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutItemsInput
-  connect?: Prisma.EstimateWhereUniqueInput
-}
-
-export type EstimateUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.EstimateCreateWithoutItemsInput, Prisma.EstimateUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.EstimateUpsertWithoutItemsInput
-  connect?: Prisma.EstimateWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutItemsInput, Prisma.EstimateUpdateWithoutItemsInput>, Prisma.EstimateUncheckedUpdateWithoutItemsInput>
 }
 
 export type EstimateCreateWithoutOrganizationInput = {
@@ -702,13 +584,10 @@ export type EstimateCreateWithoutOrganizationInput = {
   status?: $Enums.EstimateStatus
   createdAt?: Date | string
   deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
   installments?: number
   downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Date | string | null
   warrantyTerms?: string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutEstimatesInput
-  items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutOrganizationInput = {
@@ -718,13 +597,10 @@ export type EstimateUncheckedCreateWithoutOrganizationInput = {
   status?: $Enums.EstimateStatus
   createdAt?: Date | string
   deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
   installments?: number
   downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Date | string | null
   warrantyTerms?: string | null
-  customerId?: string | null
-  items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutOrganizationInput = {
@@ -763,151 +639,11 @@ export type EstimateScalarWhereInput = {
   status?: Prisma.EnumEstimateStatusFilter<"Estimate"> | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFilter<"Estimate"> | Date | string
   deliveryDeadline?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFilter<"Estimate"> | $Enums.PaymentMethod
   installments?: Prisma.IntFilter<"Estimate"> | number
   downPayment?: Prisma.DecimalNullableFilter<"Estimate"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.DateTimeNullableFilter<"Estimate"> | Date | string | null
   warrantyTerms?: Prisma.StringNullableFilter<"Estimate"> | string | null
   organizationId?: Prisma.StringNullableFilter<"Estimate"> | string | null
-  customerId?: Prisma.StringNullableFilter<"Estimate"> | string | null
-}
-
-export type EstimateCreateWithoutCustomerInput = {
-  id?: string
-  estimateNo: number
-  description?: string | null
-  status?: $Enums.EstimateStatus
-  createdAt?: Date | string
-  deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
-  installments?: number
-  downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Date | string | null
-  warrantyTerms?: string | null
-  organization?: Prisma.OrganizationCreateNestedOneWithoutEstimatesInput
-  items?: Prisma.EstimateItemCreateNestedManyWithoutEstimateInput
-}
-
-export type EstimateUncheckedCreateWithoutCustomerInput = {
-  id?: string
-  estimateNo: number
-  description?: string | null
-  status?: $Enums.EstimateStatus
-  createdAt?: Date | string
-  deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
-  installments?: number
-  downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Date | string | null
-  warrantyTerms?: string | null
-  organizationId?: string | null
-  items?: Prisma.EstimateItemUncheckedCreateNestedManyWithoutEstimateInput
-}
-
-export type EstimateCreateOrConnectWithoutCustomerInput = {
-  where: Prisma.EstimateWhereUniqueInput
-  create: Prisma.XOR<Prisma.EstimateCreateWithoutCustomerInput, Prisma.EstimateUncheckedCreateWithoutCustomerInput>
-}
-
-export type EstimateCreateManyCustomerInputEnvelope = {
-  data: Prisma.EstimateCreateManyCustomerInput | Prisma.EstimateCreateManyCustomerInput[]
-  skipDuplicates?: boolean
-}
-
-export type EstimateUpsertWithWhereUniqueWithoutCustomerInput = {
-  where: Prisma.EstimateWhereUniqueInput
-  update: Prisma.XOR<Prisma.EstimateUpdateWithoutCustomerInput, Prisma.EstimateUncheckedUpdateWithoutCustomerInput>
-  create: Prisma.XOR<Prisma.EstimateCreateWithoutCustomerInput, Prisma.EstimateUncheckedCreateWithoutCustomerInput>
-}
-
-export type EstimateUpdateWithWhereUniqueWithoutCustomerInput = {
-  where: Prisma.EstimateWhereUniqueInput
-  data: Prisma.XOR<Prisma.EstimateUpdateWithoutCustomerInput, Prisma.EstimateUncheckedUpdateWithoutCustomerInput>
-}
-
-export type EstimateUpdateManyWithWhereWithoutCustomerInput = {
-  where: Prisma.EstimateScalarWhereInput
-  data: Prisma.XOR<Prisma.EstimateUpdateManyMutationInput, Prisma.EstimateUncheckedUpdateManyWithoutCustomerInput>
-}
-
-export type EstimateCreateWithoutItemsInput = {
-  id?: string
-  estimateNo: number
-  description?: string | null
-  status?: $Enums.EstimateStatus
-  createdAt?: Date | string
-  deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
-  installments?: number
-  downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Date | string | null
-  warrantyTerms?: string | null
-  organization?: Prisma.OrganizationCreateNestedOneWithoutEstimatesInput
-  customer?: Prisma.CustomerCreateNestedOneWithoutEstimatesInput
-}
-
-export type EstimateUncheckedCreateWithoutItemsInput = {
-  id?: string
-  estimateNo: number
-  description?: string | null
-  status?: $Enums.EstimateStatus
-  createdAt?: Date | string
-  deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
-  installments?: number
-  downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Date | string | null
-  warrantyTerms?: string | null
-  organizationId?: string | null
-  customerId?: string | null
-}
-
-export type EstimateCreateOrConnectWithoutItemsInput = {
-  where: Prisma.EstimateWhereUniqueInput
-  create: Prisma.XOR<Prisma.EstimateCreateWithoutItemsInput, Prisma.EstimateUncheckedCreateWithoutItemsInput>
-}
-
-export type EstimateUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.EstimateUpdateWithoutItemsInput, Prisma.EstimateUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.EstimateCreateWithoutItemsInput, Prisma.EstimateUncheckedCreateWithoutItemsInput>
-  where?: Prisma.EstimateWhereInput
-}
-
-export type EstimateUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.EstimateWhereInput
-  data: Prisma.XOR<Prisma.EstimateUpdateWithoutItemsInput, Prisma.EstimateUncheckedUpdateWithoutItemsInput>
-}
-
-export type EstimateUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estimateNo?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
-  installments?: Prisma.IntFieldUpdateOperationsInput | number
-  downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organization?: Prisma.OrganizationUpdateOneWithoutEstimatesNestedInput
-  customer?: Prisma.CustomerUpdateOneWithoutEstimatesNestedInput
-}
-
-export type EstimateUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estimateNo?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
-  installments?: Prisma.IntFieldUpdateOperationsInput | number
-  downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EstimateCreateManyOrganizationInput = {
@@ -917,12 +653,10 @@ export type EstimateCreateManyOrganizationInput = {
   status?: $Enums.EstimateStatus
   createdAt?: Date | string
   deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
   installments?: number
   downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Date | string | null
   warrantyTerms?: string | null
-  customerId?: string | null
 }
 
 export type EstimateUpdateWithoutOrganizationInput = {
@@ -932,13 +666,10 @@ export type EstimateUpdateWithoutOrganizationInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutEstimatesNestedInput
-  items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutOrganizationInput = {
@@ -948,13 +679,10 @@ export type EstimateUncheckedUpdateWithoutOrganizationInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutOrganizationInput = {
@@ -964,105 +692,12 @@ export type EstimateUncheckedUpdateManyWithoutOrganizationInput = {
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   installments?: Prisma.IntFieldUpdateOperationsInput | number
   downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type EstimateCreateManyCustomerInput = {
-  id?: string
-  estimateNo: number
-  description?: string | null
-  status?: $Enums.EstimateStatus
-  createdAt?: Date | string
-  deliveryDeadline?: Date | string | null
-  paymentMethod?: $Enums.PaymentMethod
-  installments?: number
-  downPayment?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Date | string | null
-  warrantyTerms?: string | null
-  organizationId?: string | null
-}
-
-export type EstimateUpdateWithoutCustomerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estimateNo?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
-  installments?: Prisma.IntFieldUpdateOperationsInput | number
-  downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organization?: Prisma.OrganizationUpdateOneWithoutEstimatesNestedInput
-  items?: Prisma.EstimateItemUpdateManyWithoutEstimateNestedInput
-}
-
-export type EstimateUncheckedUpdateWithoutCustomerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estimateNo?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
-  installments?: Prisma.IntFieldUpdateOperationsInput | number
-  downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  items?: Prisma.EstimateItemUncheckedUpdateManyWithoutEstimateNestedInput
-}
-
-export type EstimateUncheckedUpdateManyWithoutCustomerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estimateNo?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deliveryDeadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
-  installments?: Prisma.IntFieldUpdateOperationsInput | number
-  downPayment?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  validity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  warrantyTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  organizationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-
-/**
- * Count Type EstimateCountOutputType
- */
-
-export type EstimateCountOutputType = {
-  items: number
-}
-
-export type EstimateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  items?: boolean | EstimateCountOutputTypeCountItemsArgs
-}
-
-/**
- * EstimateCountOutputType without action
- */
-export type EstimateCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the EstimateCountOutputType
-   */
-  select?: Prisma.EstimateCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * EstimateCountOutputType without action
- */
-export type EstimateCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EstimateItemWhereInput
-}
 
 
 export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1072,17 +707,12 @@ export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   status?: boolean
   createdAt?: boolean
   deliveryDeadline?: boolean
-  paymentMethod?: boolean
   installments?: boolean
   downPayment?: boolean
   validity?: boolean
   warrantyTerms?: boolean
   organizationId?: boolean
-  customerId?: boolean
   organization?: boolean | Prisma.Estimate$organizationArgs<ExtArgs>
-  customer?: boolean | Prisma.Estimate$customerArgs<ExtArgs>
-  items?: boolean | Prisma.Estimate$itemsArgs<ExtArgs>
-  _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
 export type EstimateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1092,15 +722,12 @@ export type EstimateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   status?: boolean
   createdAt?: boolean
   deliveryDeadline?: boolean
-  paymentMethod?: boolean
   installments?: boolean
   downPayment?: boolean
   validity?: boolean
   warrantyTerms?: boolean
   organizationId?: boolean
-  customerId?: boolean
   organization?: boolean | Prisma.Estimate$organizationArgs<ExtArgs>
-  customer?: boolean | Prisma.Estimate$customerArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
 export type EstimateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1110,15 +737,12 @@ export type EstimateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   status?: boolean
   createdAt?: boolean
   deliveryDeadline?: boolean
-  paymentMethod?: boolean
   installments?: boolean
   downPayment?: boolean
   validity?: boolean
   warrantyTerms?: boolean
   organizationId?: boolean
-  customerId?: boolean
   organization?: boolean | Prisma.Estimate$organizationArgs<ExtArgs>
-  customer?: boolean | Prisma.Estimate$customerArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
 export type EstimateSelectScalar = {
@@ -1128,37 +752,28 @@ export type EstimateSelectScalar = {
   status?: boolean
   createdAt?: boolean
   deliveryDeadline?: boolean
-  paymentMethod?: boolean
   installments?: boolean
   downPayment?: boolean
   validity?: boolean
   warrantyTerms?: boolean
   organizationId?: boolean
-  customerId?: boolean
 }
 
-export type EstimateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateNo" | "description" | "status" | "createdAt" | "deliveryDeadline" | "paymentMethod" | "installments" | "downPayment" | "validity" | "warrantyTerms" | "organizationId" | "customerId", ExtArgs["result"]["estimate"]>
+export type EstimateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateNo" | "description" | "status" | "createdAt" | "deliveryDeadline" | "installments" | "downPayment" | "validity" | "warrantyTerms" | "organizationId", ExtArgs["result"]["estimate"]>
 export type EstimateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.Estimate$organizationArgs<ExtArgs>
-  customer?: boolean | Prisma.Estimate$customerArgs<ExtArgs>
-  items?: boolean | Prisma.Estimate$itemsArgs<ExtArgs>
-  _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EstimateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.Estimate$organizationArgs<ExtArgs>
-  customer?: boolean | Prisma.Estimate$customerArgs<ExtArgs>
 }
 export type EstimateIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.Estimate$organizationArgs<ExtArgs>
-  customer?: boolean | Prisma.Estimate$customerArgs<ExtArgs>
 }
 
 export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Estimate"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs> | null
-    customer: Prisma.$CustomerPayload<ExtArgs> | null
-    items: Prisma.$EstimateItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1167,13 +782,11 @@ export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     status: $Enums.EstimateStatus
     createdAt: Date
     deliveryDeadline: Date | null
-    paymentMethod: $Enums.PaymentMethod
     installments: number
     downPayment: runtime.Decimal | null
     validity: Date | null
     warrantyTerms: string | null
     organizationId: string | null
-    customerId: string | null
   }, ExtArgs["result"]["estimate"]>
   composites: {}
 }
@@ -1569,8 +1182,6 @@ readonly fields: EstimateFieldRefs;
 export interface Prisma__EstimateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.Estimate$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  customer<T extends Prisma.Estimate$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  items<T extends Prisma.Estimate$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1606,13 +1217,11 @@ export interface EstimateFieldRefs {
   readonly status: Prisma.FieldRef<"Estimate", 'EstimateStatus'>
   readonly createdAt: Prisma.FieldRef<"Estimate", 'DateTime'>
   readonly deliveryDeadline: Prisma.FieldRef<"Estimate", 'DateTime'>
-  readonly paymentMethod: Prisma.FieldRef<"Estimate", 'PaymentMethod'>
   readonly installments: Prisma.FieldRef<"Estimate", 'Int'>
   readonly downPayment: Prisma.FieldRef<"Estimate", 'Decimal'>
   readonly validity: Prisma.FieldRef<"Estimate", 'DateTime'>
   readonly warrantyTerms: Prisma.FieldRef<"Estimate", 'String'>
   readonly organizationId: Prisma.FieldRef<"Estimate", 'String'>
-  readonly customerId: Prisma.FieldRef<"Estimate", 'String'>
 }
     
 
@@ -2025,49 +1634,6 @@ export type Estimate$organizationArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.OrganizationInclude<ExtArgs> | null
   where?: Prisma.OrganizationWhereInput
-}
-
-/**
- * Estimate.customer
- */
-export type Estimate$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Customer
-   */
-  select?: Prisma.CustomerSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Customer
-   */
-  omit?: Prisma.CustomerOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CustomerInclude<ExtArgs> | null
-  where?: Prisma.CustomerWhereInput
-}
-
-/**
- * Estimate.items
- */
-export type Estimate$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the EstimateItem
-   */
-  select?: Prisma.EstimateItemSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the EstimateItem
-   */
-  omit?: Prisma.EstimateItemOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EstimateItemInclude<ExtArgs> | null
-  where?: Prisma.EstimateItemWhereInput
-  orderBy?: Prisma.EstimateItemOrderByWithRelationInput | Prisma.EstimateItemOrderByWithRelationInput[]
-  cursor?: Prisma.EstimateItemWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.EstimateItemScalarFieldEnum | Prisma.EstimateItemScalarFieldEnum[]
 }
 
 /**

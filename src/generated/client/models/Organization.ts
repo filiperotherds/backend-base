@@ -224,12 +224,7 @@ export type OrganizationWhereInput = {
   ownerId?: Prisma.StringFilter<"Organization"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.AddressListRelationFilter
-  invites?: Prisma.InviteListRelationFilter
-  members?: Prisma.MemberListRelationFilter
   estimates?: Prisma.EstimateListRelationFilter
-  customers?: Prisma.CustomerListRelationFilter
-  products?: Prisma.ProductListRelationFilter
-  sites?: Prisma.SiteListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -245,12 +240,7 @@ export type OrganizationOrderByWithRelationInput = {
   ownerId?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
   address?: Prisma.AddressOrderByRelationAggregateInput
-  invites?: Prisma.InviteOrderByRelationAggregateInput
-  members?: Prisma.MemberOrderByRelationAggregateInput
   estimates?: Prisma.EstimateOrderByRelationAggregateInput
-  customers?: Prisma.CustomerOrderByRelationAggregateInput
-  products?: Prisma.ProductOrderByRelationAggregateInput
-  sites?: Prisma.SiteOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -269,12 +259,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.AddressListRelationFilter
-  invites?: Prisma.InviteListRelationFilter
-  members?: Prisma.MemberListRelationFilter
   estimates?: Prisma.EstimateListRelationFilter
-  customers?: Prisma.CustomerListRelationFilter
-  products?: Prisma.ProductListRelationFilter
-  sites?: Prisma.SiteListRelationFilter
 }, "id" | "domain" | "cpfCnpj" | "email" | "ownerId">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -319,14 +304,9 @@ export type OrganizationCreateInput = {
   updatedAt?: Date | string
   cpfCnpj?: string | null
   email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
+  owner: Prisma.UserCreateNestedOneWithoutOrganizationInput
   address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -341,12 +321,7 @@ export type OrganizationUncheckedCreateInput = {
   email?: string | null
   ownerId: string
   address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -359,14 +334,9 @@ export type OrganizationUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
+  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationNestedInput
   address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -381,12 +351,7 @@ export type OrganizationUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -430,11 +395,6 @@ export type OrganizationUncheckedUpdateManyInput = {
 export type OrganizationNullableScalarRelationFilter = {
   is?: Prisma.OrganizationWhereInput | null
   isNot?: Prisma.OrganizationWhereInput | null
-}
-
-export type OrganizationScalarRelationFilter = {
-  is?: Prisma.OrganizationWhereInput
-  isNot?: Prisma.OrganizationWhereInput
 }
 
 export type OrganizationCountOrderByAggregateInput = {
@@ -508,34 +468,6 @@ export type OrganizationUncheckedUpdateOneWithoutOwnerNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOwnerInput, Prisma.OrganizationUpdateWithoutOwnerInput>, Prisma.OrganizationUncheckedUpdateWithoutOwnerInput>
 }
 
-export type OrganizationCreateNestedOneWithoutInvitesInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutInvitesInput, Prisma.OrganizationUncheckedCreateWithoutInvitesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutInvitesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneRequiredWithoutInvitesNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutInvitesInput, Prisma.OrganizationUncheckedCreateWithoutInvitesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutInvitesInput
-  upsert?: Prisma.OrganizationUpsertWithoutInvitesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutInvitesInput, Prisma.OrganizationUpdateWithoutInvitesInput>, Prisma.OrganizationUncheckedUpdateWithoutInvitesInput>
-}
-
-export type OrganizationCreateNestedOneWithoutMembersInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutMembersInput, Prisma.OrganizationUncheckedCreateWithoutMembersInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutMembersInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneRequiredWithoutMembersNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutMembersInput, Prisma.OrganizationUncheckedCreateWithoutMembersInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutMembersInput
-  upsert?: Prisma.OrganizationUpsertWithoutMembersInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutMembersInput, Prisma.OrganizationUpdateWithoutMembersInput>, Prisma.OrganizationUncheckedUpdateWithoutMembersInput>
-}
-
 export type OrganizationCreateNestedOneWithoutAddressInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAddressInput, Prisma.OrganizationUncheckedCreateWithoutAddressInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAddressInput
@@ -568,54 +500,6 @@ export type OrganizationUpdateOneWithoutEstimatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutEstimatesInput, Prisma.OrganizationUpdateWithoutEstimatesInput>, Prisma.OrganizationUncheckedUpdateWithoutEstimatesInput>
 }
 
-export type OrganizationCreateNestedOneWithoutCustomersInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCustomersInput, Prisma.OrganizationUncheckedCreateWithoutCustomersInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCustomersInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneWithoutCustomersNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCustomersInput, Prisma.OrganizationUncheckedCreateWithoutCustomersInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCustomersInput
-  upsert?: Prisma.OrganizationUpsertWithoutCustomersInput
-  disconnect?: Prisma.OrganizationWhereInput | boolean
-  delete?: Prisma.OrganizationWhereInput | boolean
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCustomersInput, Prisma.OrganizationUpdateWithoutCustomersInput>, Prisma.OrganizationUncheckedUpdateWithoutCustomersInput>
-}
-
-export type OrganizationCreateNestedOneWithoutProductsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutProductsInput, Prisma.OrganizationUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutProductsInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneWithoutProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutProductsInput, Prisma.OrganizationUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutProductsInput
-  upsert?: Prisma.OrganizationUpsertWithoutProductsInput
-  disconnect?: Prisma.OrganizationWhereInput | boolean
-  delete?: Prisma.OrganizationWhereInput | boolean
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutProductsInput, Prisma.OrganizationUpdateWithoutProductsInput>, Prisma.OrganizationUncheckedUpdateWithoutProductsInput>
-}
-
-export type OrganizationCreateNestedOneWithoutSitesInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSitesInput, Prisma.OrganizationUncheckedCreateWithoutSitesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSitesInput
-  connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUpdateOneWithoutSitesNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSitesInput, Prisma.OrganizationUncheckedCreateWithoutSitesInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSitesInput
-  upsert?: Prisma.OrganizationUpsertWithoutSitesInput
-  disconnect?: Prisma.OrganizationWhereInput | boolean
-  delete?: Prisma.OrganizationWhereInput | boolean
-  connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSitesInput, Prisma.OrganizationUpdateWithoutSitesInput>, Prisma.OrganizationUncheckedUpdateWithoutSitesInput>
-}
-
 export type OrganizationCreateWithoutOwnerInput = {
   id?: string
   name?: string | null
@@ -627,12 +511,7 @@ export type OrganizationCreateWithoutOwnerInput = {
   cpfCnpj?: string | null
   email?: string | null
   address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOwnerInput = {
@@ -646,12 +525,7 @@ export type OrganizationUncheckedCreateWithoutOwnerInput = {
   cpfCnpj?: string | null
   email?: string | null
   address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOwnerInput = {
@@ -681,12 +555,7 @@ export type OrganizationUpdateWithoutOwnerInput = {
   cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOwnerInput = {
@@ -700,196 +569,7 @@ export type OrganizationUncheckedUpdateWithoutOwnerInput = {
   cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutInvitesInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
-  address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutInvitesInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  ownerId: string
-  address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutInvitesInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutInvitesInput, Prisma.OrganizationUncheckedCreateWithoutInvitesInput>
-}
-
-export type OrganizationUpsertWithoutInvitesInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutInvitesInput, Prisma.OrganizationUncheckedUpdateWithoutInvitesInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutInvitesInput, Prisma.OrganizationUncheckedCreateWithoutInvitesInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutInvitesInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutInvitesInput, Prisma.OrganizationUncheckedUpdateWithoutInvitesInput>
-}
-
-export type OrganizationUpdateWithoutInvitesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
-  address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutInvitesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutMembersInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
-  address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutMembersInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  ownerId: string
-  address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutMembersInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutMembersInput, Prisma.OrganizationUncheckedCreateWithoutMembersInput>
-}
-
-export type OrganizationUpsertWithoutMembersInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutMembersInput, Prisma.OrganizationUncheckedUpdateWithoutMembersInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutMembersInput, Prisma.OrganizationUncheckedCreateWithoutMembersInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutMembersInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutMembersInput, Prisma.OrganizationUncheckedUpdateWithoutMembersInput>
-}
-
-export type OrganizationUpdateWithoutMembersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
-  address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutMembersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutAddressInput = {
@@ -902,13 +582,8 @@ export type OrganizationCreateWithoutAddressInput = {
   updatedAt?: Date | string
   cpfCnpj?: string | null
   email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
+  owner: Prisma.UserCreateNestedOneWithoutOrganizationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutAddressInput = {
@@ -922,12 +597,7 @@ export type OrganizationUncheckedCreateWithoutAddressInput = {
   cpfCnpj?: string | null
   email?: string | null
   ownerId: string
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutAddressInput = {
@@ -956,13 +626,8 @@ export type OrganizationUpdateWithoutAddressInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
+  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutAddressInput = {
@@ -976,12 +641,7 @@ export type OrganizationUncheckedUpdateWithoutAddressInput = {
   cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutEstimatesInput = {
@@ -994,13 +654,8 @@ export type OrganizationCreateWithoutEstimatesInput = {
   updatedAt?: Date | string
   cpfCnpj?: string | null
   email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
+  owner: Prisma.UserCreateNestedOneWithoutOrganizationInput
   address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutEstimatesInput = {
@@ -1015,11 +670,6 @@ export type OrganizationUncheckedCreateWithoutEstimatesInput = {
   email?: string | null
   ownerId: string
   address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutEstimatesInput = {
@@ -1048,13 +698,8 @@ export type OrganizationUpdateWithoutEstimatesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
+  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationNestedInput
   address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutEstimatesInput = {
@@ -1069,287 +714,6 @@ export type OrganizationUncheckedUpdateWithoutEstimatesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutCustomersInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
-  address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutCustomersInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  ownerId: string
-  address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutCustomersInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCustomersInput, Prisma.OrganizationUncheckedCreateWithoutCustomersInput>
-}
-
-export type OrganizationUpsertWithoutCustomersInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCustomersInput, Prisma.OrganizationUncheckedUpdateWithoutCustomersInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCustomersInput, Prisma.OrganizationUncheckedCreateWithoutCustomersInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutCustomersInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCustomersInput, Prisma.OrganizationUncheckedUpdateWithoutCustomersInput>
-}
-
-export type OrganizationUpdateWithoutCustomersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
-  address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutCustomersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutProductsInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
-  address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutProductsInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  ownerId: string
-  address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  sites?: Prisma.SiteUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutProductsInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutProductsInput, Prisma.OrganizationUncheckedCreateWithoutProductsInput>
-}
-
-export type OrganizationUpsertWithoutProductsInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutProductsInput, Prisma.OrganizationUncheckedUpdateWithoutProductsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutProductsInput, Prisma.OrganizationUncheckedCreateWithoutProductsInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutProductsInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutProductsInput, Prisma.OrganizationUncheckedUpdateWithoutProductsInput>
-}
-
-export type OrganizationUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
-  address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  sites?: Prisma.SiteUncheckedUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationCreateWithoutSitesInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  owner: Prisma.UserCreateNestedOneWithoutOrganizationOwnerInput
-  address?: Prisma.AddressCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationUncheckedCreateWithoutSitesInput = {
-  id?: string
-  name?: string | null
-  domain?: string | null
-  shouldAttachUsersByDomain?: boolean
-  avatarUrl?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cpfCnpj?: string | null
-  email?: string | null
-  ownerId: string
-  address?: Prisma.AddressUncheckedCreateNestedManyWithoutOrganizationInput
-  invites?: Prisma.InviteUncheckedCreateNestedManyWithoutOrganizationInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutOrganizationInput
-  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganizationInput
-  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutOrganizationInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
-}
-
-export type OrganizationCreateOrConnectWithoutSitesInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSitesInput, Prisma.OrganizationUncheckedCreateWithoutSitesInput>
-}
-
-export type OrganizationUpsertWithoutSitesInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSitesInput, Prisma.OrganizationUncheckedUpdateWithoutSitesInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSitesInput, Prisma.OrganizationUncheckedCreateWithoutSitesInput>
-  where?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationUpdateToOneWithWhereWithoutSitesInput = {
-  where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSitesInput, Prisma.OrganizationUncheckedUpdateWithoutSitesInput>
-}
-
-export type OrganizationUpdateWithoutSitesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  owner?: Prisma.UserUpdateOneRequiredWithoutOrganizationOwnerNestedInput
-  address?: Prisma.AddressUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
-}
-
-export type OrganizationUncheckedUpdateWithoutSitesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shouldAttachUsersByDomain?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cpfCnpj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.AddressUncheckedUpdateManyWithoutOrganizationNestedInput
-  invites?: Prisma.InviteUncheckedUpdateManyWithoutOrganizationNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutOrganizationNestedInput
-  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganizationNestedInput
-  customers?: Prisma.CustomerUncheckedUpdateManyWithoutOrganizationNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -1359,22 +723,12 @@ export type OrganizationUncheckedUpdateWithoutSitesInput = {
 
 export type OrganizationCountOutputType = {
   address: number
-  invites: number
-  members: number
   estimates: number
-  customers: number
-  products: number
-  sites: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   address?: boolean | OrganizationCountOutputTypeCountAddressArgs
-  invites?: boolean | OrganizationCountOutputTypeCountInvitesArgs
-  members?: boolean | OrganizationCountOutputTypeCountMembersArgs
   estimates?: boolean | OrganizationCountOutputTypeCountEstimatesArgs
-  customers?: boolean | OrganizationCountOutputTypeCountCustomersArgs
-  products?: boolean | OrganizationCountOutputTypeCountProductsArgs
-  sites?: boolean | OrganizationCountOutputTypeCountSitesArgs
 }
 
 /**
@@ -1397,43 +751,8 @@ export type OrganizationCountOutputTypeCountAddressArgs<ExtArgs extends runtime.
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountInvitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InviteWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MemberWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
 export type OrganizationCountOutputTypeCountEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.EstimateWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CustomerWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProductWhereInput
-}
-
-/**
- * OrganizationCountOutputType without action
- */
-export type OrganizationCountOutputTypeCountSitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SiteWhereInput
 }
 
 
@@ -1450,12 +769,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.Organization$addressArgs<ExtArgs>
-  invites?: boolean | Prisma.Organization$invitesArgs<ExtArgs>
-  members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   estimates?: boolean | Prisma.Organization$estimatesArgs<ExtArgs>
-  customers?: boolean | Prisma.Organization$customersArgs<ExtArgs>
-  products?: boolean | Prisma.Organization$productsArgs<ExtArgs>
-  sites?: boolean | Prisma.Organization$sitesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1504,12 +818,7 @@ export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.Organization$addressArgs<ExtArgs>
-  invites?: boolean | Prisma.Organization$invitesArgs<ExtArgs>
-  members?: boolean | Prisma.Organization$membersArgs<ExtArgs>
   estimates?: boolean | Prisma.Organization$estimatesArgs<ExtArgs>
-  customers?: boolean | Prisma.Organization$customersArgs<ExtArgs>
-  products?: boolean | Prisma.Organization$productsArgs<ExtArgs>
-  sites?: boolean | Prisma.Organization$sitesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1524,12 +833,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     owner: Prisma.$UserPayload<ExtArgs>
     address: Prisma.$AddressPayload<ExtArgs>[]
-    invites: Prisma.$InvitePayload<ExtArgs>[]
-    members: Prisma.$MemberPayload<ExtArgs>[]
     estimates: Prisma.$EstimatePayload<ExtArgs>[]
-    customers: Prisma.$CustomerPayload<ExtArgs>[]
-    products: Prisma.$ProductPayload<ExtArgs>[]
-    sites: Prisma.$SitePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1938,12 +1242,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   address<T extends Prisma.Organization$addressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$addressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  invites<T extends Prisma.Organization$invitesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$invitesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  members<T extends Prisma.Organization$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   estimates<T extends Prisma.Organization$estimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$estimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  customers<T extends Prisma.Organization$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  products<T extends Prisma.Organization$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sites<T extends Prisma.Organization$sitesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$sitesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2403,54 +1702,6 @@ export type Organization$addressArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Organization.invites
- */
-export type Organization$invitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Invite
-   */
-  select?: Prisma.InviteSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Invite
-   */
-  omit?: Prisma.InviteOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InviteInclude<ExtArgs> | null
-  where?: Prisma.InviteWhereInput
-  orderBy?: Prisma.InviteOrderByWithRelationInput | Prisma.InviteOrderByWithRelationInput[]
-  cursor?: Prisma.InviteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.InviteScalarFieldEnum | Prisma.InviteScalarFieldEnum[]
-}
-
-/**
- * Organization.members
- */
-export type Organization$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Member
-   */
-  select?: Prisma.MemberSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Member
-   */
-  omit?: Prisma.MemberOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MemberInclude<ExtArgs> | null
-  where?: Prisma.MemberWhereInput
-  orderBy?: Prisma.MemberOrderByWithRelationInput | Prisma.MemberOrderByWithRelationInput[]
-  cursor?: Prisma.MemberWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MemberScalarFieldEnum | Prisma.MemberScalarFieldEnum[]
-}
-
-/**
  * Organization.estimates
  */
 export type Organization$estimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2472,78 +1723,6 @@ export type Organization$estimatesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.EstimateScalarFieldEnum | Prisma.EstimateScalarFieldEnum[]
-}
-
-/**
- * Organization.customers
- */
-export type Organization$customersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Customer
-   */
-  select?: Prisma.CustomerSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Customer
-   */
-  omit?: Prisma.CustomerOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CustomerInclude<ExtArgs> | null
-  where?: Prisma.CustomerWhereInput
-  orderBy?: Prisma.CustomerOrderByWithRelationInput | Prisma.CustomerOrderByWithRelationInput[]
-  cursor?: Prisma.CustomerWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CustomerScalarFieldEnum | Prisma.CustomerScalarFieldEnum[]
-}
-
-/**
- * Organization.products
- */
-export type Organization$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Product
-   */
-  select?: Prisma.ProductSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Product
-   */
-  omit?: Prisma.ProductOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProductInclude<ExtArgs> | null
-  where?: Prisma.ProductWhereInput
-  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
-  cursor?: Prisma.ProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
-}
-
-/**
- * Organization.sites
- */
-export type Organization$sitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Site
-   */
-  select?: Prisma.SiteSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Site
-   */
-  omit?: Prisma.SiteOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SiteInclude<ExtArgs> | null
-  where?: Prisma.SiteWhereInput
-  orderBy?: Prisma.SiteOrderByWithRelationInput | Prisma.SiteOrderByWithRelationInput[]
-  cursor?: Prisma.SiteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SiteScalarFieldEnum | Prisma.SiteScalarFieldEnum[]
 }
 
 /**
