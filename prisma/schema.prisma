@@ -16,6 +16,7 @@ model User {
   avatarUrl           String?   @map("avatar_url")
   birthDate           DateTime? @map("birth_date")
   onboardingCompleted Boolean   @default(false) @map("onboarding_completed")
+  isVerified          Boolean   @default(false) @map("is_verified")
   createdAt           DateTime  @default(now()) @map("created_at")
   updatedAt           DateTime  @updatedAt @map("updated_at")
 
@@ -39,6 +40,7 @@ model UserProfile {
 model Token {
   id        String    @id @default(uuid())
   type      TokenType
+  code      String?
   createdAt DateTime  @default(now()) @map("created_at")
   userId    String    @map("user_id")
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -130,6 +132,7 @@ model Estimate {
 
 enum TokenType {
   PASSWORD_RECOVER
+  EMAIL_VERIFICATION
 }
 
 enum EstimateStatus {

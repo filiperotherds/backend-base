@@ -9,6 +9,10 @@ import {
   type SignUpBodySchema,
   signUpBodySchema,
 } from './schemas/sign-up.schema'
+import {
+  type VerifyEmailBodySchema,
+  verifyEmailBodySchema,
+} from './schemas/verify-email.schema'
 
 @Controller('/auth')
 export class AuthController {
@@ -22,9 +26,14 @@ export class AuthController {
     return result
   }
 
-  @Post('/signup')
-  @UsePipes(new ZodValidationPipe(signUpBodySchema))
   async signup(@Body() body: SignUpBodySchema) {
     await this.authService.singup(body)
+  }
+
+  @Post('/verify')
+  @UsePipes(new ZodValidationPipe(verifyEmailBodySchema))
+  @HttpCode(204)
+  async verify(@Body() body: VerifyEmailBodySchema) {
+    await this.authService.verifyEmail(body)
   }
 }

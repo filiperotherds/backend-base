@@ -86,6 +86,7 @@ export const UserScalarFieldEnum = {
   avatarUrl: 'avatarUrl',
   birthDate: 'birthDate',
   onboardingCompleted: 'onboardingCompleted',
+  isVerified: 'isVerified',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -104,6 +105,7 @@ export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[key
 export const TokenScalarFieldEnum = {
   id: 'id',
   type: 'type',
+  code: 'code',
   createdAt: 'createdAt',
   userId: 'userId'
 } as const

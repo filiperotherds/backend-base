@@ -10,7 +10,8 @@
 */
 
 export const TokenType = {
-  PASSWORD_RECOVER: 'PASSWORD_RECOVER'
+  PASSWORD_RECOVER: 'PASSWORD_RECOVER',
+  EMAIL_VERIFICATION: 'EMAIL_VERIFICATION'
 } as const
 
 export type TokenType = (typeof TokenType)[keyof typeof TokenType]

@@ -8,15 +8,18 @@ import {
 import { JwtService } from '@nestjs/jwt'
 import { SignInBodySchema } from './schemas/sign-in.schema'
 import { compare, hash } from 'bcryptjs'
-import { SignUpBodySchema } from './schemas/sign-up.schema'
 import { CurrentUser } from '@/common/decorators/current-user-decorator'
 import { TokenPayload } from './strategies/jwt.strategy'
+import { MailService } from '@/common/services/mail/mail.service'
+import { VerifyEmailBodySchema } from './schemas/verify-email.schema'
+import { SignUpBodySchema } from './schemas/sign-up.schema'
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwt: JwtService,
+    private mailService: MailService,
   ) {}
 
   async singin({ email, password }: SignInBodySchema) {
@@ -34,6 +37,10 @@ export class AuthService {
 
     if (!isPasswordValid) {
       throw new UnauthorizedException('Credenciais inválidas.')
+    }
+
+    if (!user.isVerified) {
+      throw new UnauthorizedException('E-mail não verificado.')
     }
 
     const payload = {
@@ -63,6 +70,9 @@ export class AuthService {
     }
 
     const hashedPassword = await hash(password, 8)
+    const verificationCode = Math.floor(
+      100000 + Math.random() * 900000,
+    ).toString()
 
     await this.prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
@@ -75,6 +85,52 @@ export class AuthService {
       await tx.userProfile.create({
         data: {
           userId: user.id,
+        },
+      })
+
+      await tx.token.create({
+        data: {
+          userId: user.id,
+          type: 'EMAIL_VERIFICATION',
+          code: verificationCode,
+        },
+      })
+
+      await this.mailService.sendVerificationEmail(email, verificationCode)
+    })
+  }
+
+  async verifyEmail({ email, code }: VerifyEmailBodySchema) {
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+      include: {
+        tokens: {
+          where: {
+            type: 'EMAIL_VERIFICATION',
+            code,
+          },
+        },
+      },
+    })
+
+    if (!user) {
+      throw new BadRequestException('Usuário não encontrado.')
+    }
+
+    if (user.tokens.length === 0) {
+      throw new BadRequestException('Código de verificação inválido.')
+    }
+
+    await this.prisma.$transaction(async (tx) => {
+      await tx.user.update({
+        where: { id: user.id },
+        data: { isVerified: true },
+      })
+
+      await tx.token.deleteMany({
+        where: {
+          userId: user.id,
+          type: 'EMAIL_VERIFICATION',
         },
       })
     })
