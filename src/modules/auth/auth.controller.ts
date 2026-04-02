@@ -21,13 +21,15 @@ export class AuthController {
   @Post('/signin')
   @UsePipes(new ZodValidationPipe(signInBodySchema))
   async signin(@Body() body: SignInBodySchema) {
-    const result = await this.authService.singin(body)
+    const result = await this.authService.signin(body)
 
     return result
   }
 
+  @Post('/signup')
+  @UsePipes(new ZodValidationPipe(signUpBodySchema))
   async signup(@Body() body: SignUpBodySchema) {
-    await this.authService.singup(body)
+    await this.authService.signup(body)
   }
 
   @Post('/verify')

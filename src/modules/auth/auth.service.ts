@@ -22,7 +22,7 @@ export class AuthService {
     private mailService: MailService,
   ) {}
 
-  async singin({ email, password }: SignInBodySchema) {
+  async signin({ email, password }: SignInBodySchema) {
     const user = await this.prisma.user.findFirst({
       where: {
         email,
@@ -58,7 +58,7 @@ export class AuthService {
     }
   }
 
-  async singup({ email, password }: SignUpBodySchema) {
+  async signup({ email, password }: SignUpBodySchema) {
     const userExists = await this.prisma.user.findFirst({
       where: {
         email,
