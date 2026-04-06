@@ -13,6 +13,10 @@ import {
   type VerifyEmailBodySchema,
   verifyEmailBodySchema,
 } from './schemas/verify-email.schema'
+import {
+  type ResendVerificationBodySchema,
+  resendVerificationBodySchema,
+} from './schemas/resend-verification.schema'
 
 @Controller('/auth')
 export class AuthController {
@@ -37,5 +41,12 @@ export class AuthController {
   @HttpCode(204)
   async verify(@Body() body: VerifyEmailBodySchema) {
     await this.authService.verifyEmail(body)
+  }
+
+  @Post('/resend-verification')
+  @UsePipes(new ZodValidationPipe(resendVerificationBodySchema))
+  @HttpCode(204)
+  async resendVerification(@Body() body: ResendVerificationBodySchema) {
+    await this.authService.resendVerification(body)
   }
 }

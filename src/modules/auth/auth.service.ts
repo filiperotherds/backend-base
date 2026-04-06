@@ -13,6 +13,7 @@ import { TokenPayload } from './strategies/jwt.strategy'
 import { MailService } from '@/common/services/mail/mail.service'
 import { VerifyEmailBodySchema } from './schemas/verify-email.schema'
 import { SignUpBodySchema } from './schemas/sign-up.schema'
+import { ResendVerificationBodySchema } from './schemas/resend-verification.schema'
 
 @Injectable()
 export class AuthService {
@@ -130,6 +131,43 @@ export class AuthService {
           type: 'EMAIL_VERIFICATION',
         },
       })
+    })
+  }
+
+  async resendVerification({ email }: ResendVerificationBodySchema) {
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+    })
+
+    if (!user) {
+      throw new BadRequestException('Usuário não encontrado.')
+    }
+
+    if (user.isVerified) {
+      throw new BadRequestException('Usuário já verificado.')
+    }
+
+    const verificationCode = Math.floor(
+      100000 + Math.random() * 900000,
+    ).toString()
+
+    await this.prisma.$transaction(async (tx) => {
+      await tx.token.deleteMany({
+        where: {
+          userId: user.id,
+          type: 'EMAIL_VERIFICATION',
+        },
+      })
+
+      await tx.token.create({
+        data: {
+          userId: user.id,
+          type: 'EMAIL_VERIFICATION',
+          code: verificationCode,
+        },
+      })
+
+      await this.mailService.sendVerificationEmail(email, verificationCode)
     })
   }
 
