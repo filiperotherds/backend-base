@@ -15,6 +15,9 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1024.0",
+    "@aws-sdk/lib-storage": "^3.1024.0",
+    "@aws-sdk/s3-request-presigner": "^3.1024.0",
     "@casl/ability": "^6.7.3",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
@@ -43,6 +46,7 @@
     "@nestjs/testing": "^11.0.1",
     "@prisma/client": "^7.1.0",
     "@types/express": "^5.0.0",
+    "@types/multer": "^2.1.0",
     "@types/node": "^22.10.7",
     "@types/passport-jwt": "^4.0.1",
     "@types/pg": "^8.15.6",

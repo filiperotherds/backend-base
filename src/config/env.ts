@@ -8,7 +8,13 @@ export const envSchema = z.object({
   TWILIO_ACCOUNT_SID: z.string(),
   TWILIO_AUTH_TOKEN: z.string(),
   RESEND_API_KEY: z.string(),
+  STORAGE_ENDPOINT: z.string().url(),
+  STORAGE_KEY: z.string(),
+  STORAGE_SECRET: z.string(),
+  STORAGE_BUCKET: z.string(),
+  REGION: z.string().default('us-east-1'),
   PORT: z.coerce.number().default(3333),
+  APP_URL: z.string().url(),
 })
 
 export type Env = z.infer<typeof envSchema>

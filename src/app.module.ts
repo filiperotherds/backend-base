@@ -7,6 +7,8 @@ import { UsersModule } from './modules/users/users.module'
 import { OrganizationsModule } from './modules/organizations/organizations.module'
 import { EstimatesModule } from './modules/estimates/estimates.module'
 import { MailModule } from './common/services/mail/mail.module'
+import { S3Module } from './common/services/s3/s3.module'
+import { UploadsModule } from './modules/uploads/uploads.module'
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { MailModule } from './common/services/mail/mail.module'
     OrganizationsModule,
     EstimatesModule,
     MailModule,
+    S3Module,
+    UploadsModule,
   ],
   controllers: [],
   providers: [PrismaService],
