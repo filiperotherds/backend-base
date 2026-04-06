@@ -1,4 +1,11 @@
-import { Body, Controller, HttpCode, Post, UsePipes } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  UseGuards,
+  UsePipes,
+} from '@nestjs/common'
 import { ZodValidationPipe } from 'src/common/pipes/zod-validation.pipe'
 import { AuthService } from './auth.service'
 import {
@@ -17,6 +24,13 @@ import {
   type ResendVerificationBodySchema,
   resendVerificationBodySchema,
 } from './schemas/resend-verification.schema'
+import {
+  type CompleteOnboardingBodySchema,
+  completeOnboardingBodySchema,
+} from './schemas/complete-onboarding.schema'
+import { JwtAuthGuard } from './guards/jwt-auth.guard'
+import { CurrentUser } from '@/common/decorators/current-user-decorator'
+import { TokenPayload } from './strategies/jwt.strategy'
 
 @Controller('/auth')
 export class AuthController {
@@ -48,5 +62,17 @@ export class AuthController {
   @HttpCode(204)
   async resendVerification(@Body() body: ResendVerificationBodySchema) {
     await this.authService.resendVerification(body)
+  }
+
+  @Post('/complete-onboarding')
+  @UseGuards(JwtAuthGuard)
+  @UsePipes(new ZodValidationPipe(completeOnboardingBodySchema))
+  async completeOnboarding(
+    @CurrentUser() user: TokenPayload,
+    @Body() body: CompleteOnboardingBodySchema,
+  ) {
+    const result = await this.authService.completeOnboarding(user.sub, body)
+
+    return result
   }
 }

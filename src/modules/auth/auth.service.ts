@@ -14,6 +14,7 @@ import { MailService } from '@/common/services/mail/mail.service'
 import { VerifyEmailBodySchema } from './schemas/verify-email.schema'
 import { SignUpBodySchema } from './schemas/sign-up.schema'
 import { ResendVerificationBodySchema } from './schemas/resend-verification.schema'
+import { CompleteOnboardingBodySchema } from './schemas/complete-onboarding.schema'
 
 @Injectable()
 export class AuthService {
@@ -194,6 +195,47 @@ export class AuthService {
 
     return {
       organization: user.organization,
+    }
+  }
+
+  async completeOnboarding(
+    userId: string,
+    { name, cpf }: CompleteOnboardingBodySchema,
+  ) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    })
+
+    if (!user) {
+      throw new BadRequestException('Usuário não encontrado.')
+    }
+
+    if (user.onboardingCompleted) {
+      throw new BadRequestException('Onboarding já realizado.')
+    }
+
+    const updatedUser = await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        name,
+        cpf,
+        onboardingCompleted: true,
+      },
+    })
+
+    const payload = {
+      sub: updatedUser.id,
+      iss: 'jobble.auth',
+      data: {
+        is_verified: updatedUser.isVerified,
+        onboarding_completed: updatedUser.onboardingCompleted,
+      },
+    }
+
+    const accessToken = await this.jwt.signAsync(payload)
+
+    return {
+      access_token: accessToken,
     }
   }
 }
