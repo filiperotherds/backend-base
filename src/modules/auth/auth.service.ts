@@ -39,14 +39,11 @@ export class AuthService {
       throw new UnauthorizedException('Credenciais inválidas.')
     }
 
-    if (!user.isVerified) {
-      throw new UnauthorizedException('E-mail não verificado.')
-    }
-
     const payload = {
       sub: user.id,
-      iss: 'workee.auth',
+      iss: 'jobble.auth',
       data: {
+        is_verified: user.isVerified,
         onboarding_completed: user.onboardingCompleted,
       },
     }
