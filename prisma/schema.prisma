@@ -1,10 +1,12 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/client"
+  provider        = "prisma-client"
+  output          = "../src/generated/client"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider   = "postgresql"
+  extensions = [vector]
 }
 
 model User {
@@ -20,21 +22,12 @@ model User {
   createdAt           DateTime  @default(now()) @map("created_at")
   updatedAt           DateTime  @updatedAt @map("updated_at")
 
-  organization Organization?
-  tokens       Token[]
-  userProfile  UserProfile?
+  tokens Token[]
+
+  professionalProfile ProfessionalProfile?
+  serviceRequests     ServiceRequest[]
 
   @@map("user")
-}
-
-model UserProfile {
-  id        String    @id @default(uuid())
-  userId    String    @unique @map("user_id")
-  addresses Address[]
-  projects  Project[]
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("user_profile")
 }
 
 model Token {
@@ -48,95 +41,124 @@ model Token {
   @@map("tokens")
 }
 
-model Organization {
-  id        String   @id @default(uuid())
-  name      String?
-  cnpj      String?  @unique
-  avatarUrl String?  @map("avatar_url")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  ownerId String @unique @map("owner_id")
-  owner   User   @relation(fields: [ownerId], references: [id])
-
-  address   Address[]
-  estimates Estimate[]
-
-  @@index(id)
-  @@map("organization")
-}
-
-model Address {
-  id             String        @id @default(uuid())
-  street         String
-  city           String
-  state          String
-  zipCode        String        @map("zip_code")
-  country        String
-  createdAt      DateTime      @default(now()) @map("created_at")
-  updatedAt      DateTime      @updatedAt @map("updated_at")
-  number         String
-  userProfileId  String?       @map("user_profile_id")
-  organizationId String?       @map("organization_id")
-  organization   Organization? @relation(fields: [organizationId], references: [id])
-  userProfile    UserProfile?  @relation(fields: [userProfileId], references: [id])
-
-  @@map("address")
-}
-
-model Service {
-  id          String    @id @default(uuid())
-  name        String
-  description String?
-  slug        String    @unique
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
-  project     Project[]
-
-  @@map("service")
-}
-
-model Project {
-  id            String       @id @default(uuid())
-  description   String?
-  photoUrls     String[]     @map("photo_urls")
-  createdAt     DateTime     @default(now()) @map("created_at")
-  updatedAt     DateTime     @updatedAt @map("updated_at")
-  serviceId     String       @map("service_id")
-  userProfileId String?      @map("user_profile_id")
-  service       Service      @relation(fields: [serviceId], references: [id])
-  userProfile   UserProfile? @relation(fields: [userProfileId], references: [id])
-
-  @@map("project")
-}
-
-model Estimate {
-  id               String         @id @default(uuid())
-  estimateNo       Int            @map("estimate_no")
-  description      String?
-  status           EstimateStatus @default(PENDING)
-  createdAt        DateTime       @default(now()) @map("created_at")
-  deliveryDeadline DateTime?      @map("delivery_deadline")
-
-  installments  Int           @default(1)
-  downPayment   Decimal?      @map("down_payment") @db.Decimal(10, 2)
-
-  validity      DateTime?
-  warrantyTerms String?   @map("warranty_terms")
-
-  organization   Organization? @relation(fields: [organizationId], references: [id])
-  organizationId String?
-  @@unique([organizationId, estimateNo])
-  @@map("estimate")
-}
-
 enum TokenType {
   PASSWORD_RECOVER
   EMAIL_VERIFICATION
 }
 
-enum EstimateStatus {
+// ------------------------------------------
+// PERFIS E USUÁRIOS
+// ------------------------------------------
+
+model ProfessionalProfile {
+  id     String @id @default(uuid())
+  userId String @unique @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  rating       Float @default(5.0)
+  totalReviews Int   @default(0) @map("total_reviews")
+
+  baseLatitude  Float? @map("base_latitude")
+  baseLongitude Float? @map("base_longitude")
+  maxDistanceKm Float  @default(30.0) @map("max_distance_km") // Raio de atuação
+
+  // Descrição do que o profissional faz
+  bio String?
+
+  // Vetor de dimensão 384 gerado localmente (@xenova/transformers)
+  embedding Unsupported("vector(384)")?
+
+  isActive Boolean        @default(true) @map("is_active")
+  matches  ServiceMatch[]
+
+  @@map("professional_profile")
+}
+
+// ------------------------------------------
+// SOLICITAÇÃO (O MOTOR DO SISTEMA)
+// ------------------------------------------
+
+model ServiceRequest {
+  id String @id @default(uuid())
+
+  clientId String @map("client_id")
+  client   User   @relation(fields: [clientId], references: [id])
+
+  description String
+
+  // Vetor de dimensão 384
+  embedding Unsupported("vector(384)")?
+
+  isEmergency Boolean       @default(false) @map("is_emergency")
+  scheduledAt DateTime?     @map("scheduled_at")
+  status      ServiceStatus @default(SEARCHING)
+
+  address             ServiceAddress?
+  professionalMatches ServiceMatch[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("service_request")
+}
+
+enum ServiceStatus {
+  SEARCHING
   PENDING
-  APPROVED
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
+// ------------------------------------------
+// ENDEREÇO DA SOLICITAÇÃO E GEOLOCALIZAÇÃO
+// ------------------------------------------
+
+model ServiceAddress {
+  id      String @id @default(uuid())
+  street  String
+  number  String
+  city    String
+  state   String
+  zipCode String @map("zip_code")
+
+  latitude  Float
+  longitude Float
+
+  serviceRequestId String         @unique @map("service_request_id")
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+
+  @@map("service_address")
+}
+
+// ------------------------------------------
+// QUADRO DE AVISOS (DISPAROS / MATCHES)
+// ------------------------------------------
+
+model ServiceMatch {
+  id String @id @default(uuid())
+
+  serviceRequestId String         @map("service_request_id")
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+
+  professionalProfileId String              @map("professional_profile_id")
+  professional          ProfessionalProfile @relation(fields: [professionalProfileId], references: [id])
+
+  similarityScore Float // Score semântico do vetor
+  distanceKm      Float // Distância real calculada
+
+  status MatchStatus @default(PENDING)
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([serviceRequestId, professionalProfileId])
+  @@map("service_match")
+}
+
+enum MatchStatus {
+  PENDING
+  ACCEPTED
   REJECTED
+  IGNORED
 }
