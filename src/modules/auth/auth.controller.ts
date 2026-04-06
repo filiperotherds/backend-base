@@ -66,10 +66,10 @@ export class AuthController {
 
   @Post('/complete-onboarding')
   @UseGuards(JwtAuthGuard)
-  @UsePipes(new ZodValidationPipe(completeOnboardingBodySchema))
   async completeOnboarding(
     @CurrentUser() user: TokenPayload,
-    @Body() body: CompleteOnboardingBodySchema,
+    @Body(new ZodValidationPipe(completeOnboardingBodySchema))
+    body: CompleteOnboardingBodySchema,
   ) {
     const result = await this.authService.completeOnboarding(user.sub, body)
 

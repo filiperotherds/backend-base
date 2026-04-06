@@ -10,6 +10,7 @@ const tokenPayloadSchema = z.object({
   orgId: z.string().uuid().optional().nullable(),
   iss: z.string().optional(),
   data: z.object({
+    is_verified: z.boolean(),
     onboarding_completed: z.boolean(),
   }),
 })
