@@ -52,13 +52,11 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  UserProfile: 'UserProfile',
   Token: 'Token',
-  Organization: 'Organization',
-  Address: 'Address',
-  Service: 'Service',
-  Project: 'Project',
-  Estimate: 'Estimate'
+  ProfessionalProfile: 'ProfessionalProfile',
+  ServiceRequest: 'ServiceRequest',
+  ServiceAddress: 'ServiceAddress',
+  ServiceMatch: 'ServiceMatch'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -94,14 +92,6 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserProfileScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId'
-} as const
-
-export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
-
-
 export const TokenScalarFieldEnum = {
   id: 'id',
   type: 'type',
@@ -113,76 +103,61 @@ export const TokenScalarFieldEnum = {
 export type TokenScalarFieldEnum = (typeof TokenScalarFieldEnum)[keyof typeof TokenScalarFieldEnum]
 
 
-export const OrganizationScalarFieldEnum = {
+export const ProfessionalProfileScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  cnpj: 'cnpj',
-  avatarUrl: 'avatarUrl',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  ownerId: 'ownerId'
+  userId: 'userId',
+  rating: 'rating',
+  totalReviews: 'totalReviews',
+  baseLatitude: 'baseLatitude',
+  baseLongitude: 'baseLongitude',
+  maxDistanceKm: 'maxDistanceKm',
+  bio: 'bio',
+  isActive: 'isActive'
 } as const
 
-export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+export type ProfessionalProfileScalarFieldEnum = (typeof ProfessionalProfileScalarFieldEnum)[keyof typeof ProfessionalProfileScalarFieldEnum]
 
 
-export const AddressScalarFieldEnum = {
+export const ServiceRequestScalarFieldEnum = {
   id: 'id',
-  street: 'street',
-  city: 'city',
-  state: 'state',
-  zipCode: 'zipCode',
-  country: 'country',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  number: 'number',
-  userProfileId: 'userProfileId',
-  organizationId: 'organizationId'
-} as const
-
-export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
-
-
-export const ServiceScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
+  clientId: 'clientId',
   description: 'description',
-  slug: 'slug',
+  isEmergency: 'isEmergency',
+  scheduledAt: 'scheduledAt',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+export type ServiceRequestScalarFieldEnum = (typeof ServiceRequestScalarFieldEnum)[keyof typeof ServiceRequestScalarFieldEnum]
 
 
-export const ProjectScalarFieldEnum = {
+export const ServiceAddressScalarFieldEnum = {
   id: 'id',
-  description: 'description',
-  photoUrls: 'photoUrls',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  serviceId: 'serviceId',
-  userProfileId: 'userProfileId'
+  street: 'street',
+  number: 'number',
+  city: 'city',
+  state: 'state',
+  zipCode: 'zipCode',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  serviceRequestId: 'serviceRequestId'
 } as const
 
-export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+export type ServiceAddressScalarFieldEnum = (typeof ServiceAddressScalarFieldEnum)[keyof typeof ServiceAddressScalarFieldEnum]
 
 
-export const EstimateScalarFieldEnum = {
+export const ServiceMatchScalarFieldEnum = {
   id: 'id',
-  estimateNo: 'estimateNo',
-  description: 'description',
+  serviceRequestId: 'serviceRequestId',
+  professionalProfileId: 'professionalProfileId',
+  similarityScore: 'similarityScore',
+  distanceKm: 'distanceKm',
   status: 'status',
-  createdAt: 'createdAt',
-  deliveryDeadline: 'deliveryDeadline',
-  installments: 'installments',
-  downPayment: 'downPayment',
-  validity: 'validity',
-  warrantyTerms: 'warrantyTerms',
-  organizationId: 'organizationId'
+  createdAt: 'createdAt'
 } as const
 
-export type EstimateScalarFieldEnum = (typeof EstimateScalarFieldEnum)[keyof typeof EstimateScalarFieldEnum]
+export type ServiceMatchScalarFieldEnum = (typeof ServiceMatchScalarFieldEnum)[keyof typeof ServiceMatchScalarFieldEnum]
 
 
 export const SortOrder = {

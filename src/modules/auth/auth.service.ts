@@ -81,7 +81,7 @@ export class AuthService {
         },
       })
 
-      await tx.userProfile.create({
+      await tx.professionalProfile.create({
         data: {
           userId: user.id,
         },
@@ -170,32 +170,6 @@ export class AuthService {
 
       await this.mailService.sendVerificationEmail(email, verificationCode)
     })
-  }
-
-  async getUserMembership(@CurrentUser() { sub }: TokenPayload) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        id: sub,
-      },
-      select: {
-        organization: {
-          select: {
-            id: true,
-            name: true,
-            avatarUrl: true,
-            cnpj: true,
-          },
-        },
-      },
-    })
-
-    if (!user?.organization) {
-      throw new BadRequestException('Organization Not Found.')
-    }
-
-    return {
-      organization: user.organization,
-    }
   }
 
   async completeOnboarding(

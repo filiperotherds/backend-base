@@ -230,9 +230,9 @@ export type UserWhereInput = {
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   tokens?: Prisma.TokenListRelationFilter
-  userProfile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
+  professionalProfile?: Prisma.XOR<Prisma.ProfessionalProfileNullableScalarRelationFilter, Prisma.ProfessionalProfileWhereInput> | null
+  serviceRequests?: Prisma.ServiceRequestListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -247,9 +247,9 @@ export type UserOrderByWithRelationInput = {
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  organization?: Prisma.OrganizationOrderByWithRelationInput
   tokens?: Prisma.TokenOrderByRelationAggregateInput
-  userProfile?: Prisma.UserProfileOrderByWithRelationInput
+  professionalProfile?: Prisma.ProfessionalProfileOrderByWithRelationInput
+  serviceRequests?: Prisma.ServiceRequestOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -267,9 +267,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  organization?: Prisma.XOR<Prisma.OrganizationNullableScalarRelationFilter, Prisma.OrganizationWhereInput> | null
   tokens?: Prisma.TokenListRelationFilter
-  userProfile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
+  professionalProfile?: Prisma.XOR<Prisma.ProfessionalProfileNullableScalarRelationFilter, Prisma.ProfessionalProfileWhereInput> | null
+  serviceRequests?: Prisma.ServiceRequestListRelationFilter
 }, "id" | "email" | "cpf">
 
 export type UserOrderByWithAggregationInput = {
@@ -318,9 +318,9 @@ export type UserCreateInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  organization?: Prisma.OrganizationCreateNestedOneWithoutOwnerInput
   tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
-  userProfile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  professionalProfile?: Prisma.ProfessionalProfileCreateNestedOneWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutClientInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -335,9 +335,9 @@ export type UserUncheckedCreateInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  organization?: Prisma.OrganizationUncheckedCreateNestedOneWithoutOwnerInput
   tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-  userProfile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  professionalProfile?: Prisma.ProfessionalProfileUncheckedCreateNestedOneWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type UserUpdateInput = {
@@ -352,9 +352,9 @@ export type UserUpdateInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneWithoutOwnerNestedInput
   tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-  userProfile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  professionalProfile?: Prisma.ProfessionalProfileUpdateOneWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutClientNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -369,9 +369,9 @@ export type UserUncheckedUpdateInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUncheckedUpdateOneWithoutOwnerNestedInput
   tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
-  userProfile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  professionalProfile?: Prisma.ProfessionalProfileUncheckedUpdateOneWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -483,20 +483,6 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type UserCreateNestedOneWithoutUserProfileInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUserProfileInput, Prisma.UserUncheckedCreateWithoutUserProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutUserProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUserProfileInput, Prisma.UserUncheckedCreateWithoutUserProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserProfileInput
-  upsert?: Prisma.UserUpsertWithoutUserProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserProfileInput, Prisma.UserUpdateWithoutUserProfileInput>, Prisma.UserUncheckedUpdateWithoutUserProfileInput>
-}
-
 export type UserCreateNestedOneWithoutTokensInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTokensInput, Prisma.UserUncheckedCreateWithoutTokensInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTokensInput
@@ -511,98 +497,32 @@ export type UserUpdateOneRequiredWithoutTokensNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTokensInput, Prisma.UserUpdateWithoutTokensInput>, Prisma.UserUncheckedUpdateWithoutTokensInput>
 }
 
-export type UserCreateNestedOneWithoutOrganizationInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganizationInput, Prisma.UserUncheckedCreateWithoutOrganizationInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganizationInput
+export type UserCreateNestedOneWithoutProfessionalProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfessionalProfileInput, Prisma.UserUncheckedCreateWithoutProfessionalProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfessionalProfileInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutOrganizationNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganizationInput, Prisma.UserUncheckedCreateWithoutOrganizationInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganizationInput
-  upsert?: Prisma.UserUpsertWithoutOrganizationInput
+export type UserUpdateOneRequiredWithoutProfessionalProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfessionalProfileInput, Prisma.UserUncheckedCreateWithoutProfessionalProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfessionalProfileInput
+  upsert?: Prisma.UserUpsertWithoutProfessionalProfileInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrganizationInput, Prisma.UserUpdateWithoutOrganizationInput>, Prisma.UserUncheckedUpdateWithoutOrganizationInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfessionalProfileInput, Prisma.UserUpdateWithoutProfessionalProfileInput>, Prisma.UserUncheckedUpdateWithoutProfessionalProfileInput>
 }
 
-export type UserCreateWithoutUserProfileInput = {
-  id?: string
-  name?: string | null
-  email: string
-  password: string
-  cpf?: string | null
-  avatarUrl?: string | null
-  birthDate?: Date | string | null
-  onboardingCompleted?: boolean
-  isVerified?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  organization?: Prisma.OrganizationCreateNestedOneWithoutOwnerInput
-  tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
+export type UserCreateNestedOneWithoutServiceRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutServiceRequestsInput, Prisma.UserUncheckedCreateWithoutServiceRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutServiceRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedCreateWithoutUserProfileInput = {
-  id?: string
-  name?: string | null
-  email: string
-  password: string
-  cpf?: string | null
-  avatarUrl?: string | null
-  birthDate?: Date | string | null
-  onboardingCompleted?: boolean
-  isVerified?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  organization?: Prisma.OrganizationUncheckedCreateNestedOneWithoutOwnerInput
-  tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutUserProfileInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutUserProfileInput, Prisma.UserUncheckedCreateWithoutUserProfileInput>
-}
-
-export type UserUpsertWithoutUserProfileInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutUserProfileInput, Prisma.UserUncheckedUpdateWithoutUserProfileInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutUserProfileInput, Prisma.UserUncheckedCreateWithoutUserProfileInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutUserProfileInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutUserProfileInput, Prisma.UserUncheckedUpdateWithoutUserProfileInput>
-}
-
-export type UserUpdateWithoutUserProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  cpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneWithoutOwnerNestedInput
-  tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutUserProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  cpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUncheckedUpdateOneWithoutOwnerNestedInput
-  tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
+export type UserUpdateOneRequiredWithoutServiceRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutServiceRequestsInput, Prisma.UserUncheckedCreateWithoutServiceRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutServiceRequestsInput
+  upsert?: Prisma.UserUpsertWithoutServiceRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutServiceRequestsInput, Prisma.UserUpdateWithoutServiceRequestsInput>, Prisma.UserUncheckedUpdateWithoutServiceRequestsInput>
 }
 
 export type UserCreateWithoutTokensInput = {
@@ -617,8 +537,8 @@ export type UserCreateWithoutTokensInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  organization?: Prisma.OrganizationCreateNestedOneWithoutOwnerInput
-  userProfile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  professionalProfile?: Prisma.ProfessionalProfileCreateNestedOneWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutClientInput
 }
 
 export type UserUncheckedCreateWithoutTokensInput = {
@@ -633,8 +553,8 @@ export type UserUncheckedCreateWithoutTokensInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  organization?: Prisma.OrganizationUncheckedCreateNestedOneWithoutOwnerInput
-  userProfile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  professionalProfile?: Prisma.ProfessionalProfileUncheckedCreateNestedOneWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type UserCreateOrConnectWithoutTokensInput = {
@@ -665,8 +585,8 @@ export type UserUpdateWithoutTokensInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUpdateOneWithoutOwnerNestedInput
-  userProfile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  professionalProfile?: Prisma.ProfessionalProfileUpdateOneWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutClientNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTokensInput = {
@@ -681,11 +601,11 @@ export type UserUncheckedUpdateWithoutTokensInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  organization?: Prisma.OrganizationUncheckedUpdateOneWithoutOwnerNestedInput
-  userProfile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  professionalProfile?: Prisma.ProfessionalProfileUncheckedUpdateOneWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutClientNestedInput
 }
 
-export type UserCreateWithoutOrganizationInput = {
+export type UserCreateWithoutProfessionalProfileInput = {
   id?: string
   name?: string | null
   email: string
@@ -698,10 +618,10 @@ export type UserCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
-  userProfile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutClientInput
 }
 
-export type UserUncheckedCreateWithoutOrganizationInput = {
+export type UserUncheckedCreateWithoutProfessionalProfileInput = {
   id?: string
   name?: string | null
   email: string
@@ -714,26 +634,26 @@ export type UserUncheckedCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
-  userProfile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutClientInput
 }
 
-export type UserCreateOrConnectWithoutOrganizationInput = {
+export type UserCreateOrConnectWithoutProfessionalProfileInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutOrganizationInput, Prisma.UserUncheckedCreateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfessionalProfileInput, Prisma.UserUncheckedCreateWithoutProfessionalProfileInput>
 }
 
-export type UserUpsertWithoutOrganizationInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutOrganizationInput, Prisma.UserUncheckedUpdateWithoutOrganizationInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutOrganizationInput, Prisma.UserUncheckedCreateWithoutOrganizationInput>
+export type UserUpsertWithoutProfessionalProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProfessionalProfileInput, Prisma.UserUncheckedUpdateWithoutProfessionalProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfessionalProfileInput, Prisma.UserUncheckedCreateWithoutProfessionalProfileInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutOrganizationInput = {
+export type UserUpdateToOneWithWhereWithoutProfessionalProfileInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutOrganizationInput, Prisma.UserUncheckedUpdateWithoutOrganizationInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProfessionalProfileInput, Prisma.UserUncheckedUpdateWithoutProfessionalProfileInput>
 }
 
-export type UserUpdateWithoutOrganizationInput = {
+export type UserUpdateWithoutProfessionalProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -746,10 +666,10 @@ export type UserUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
-  userProfile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutClientNestedInput
 }
 
-export type UserUncheckedUpdateWithoutOrganizationInput = {
+export type UserUncheckedUpdateWithoutProfessionalProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -762,7 +682,87 @@ export type UserUncheckedUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
-  userProfile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutClientNestedInput
+}
+
+export type UserCreateWithoutServiceRequestsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  password: string
+  cpf?: string | null
+  avatarUrl?: string | null
+  birthDate?: Date | string | null
+  onboardingCompleted?: boolean
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tokens?: Prisma.TokenCreateNestedManyWithoutUserInput
+  professionalProfile?: Prisma.ProfessionalProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutServiceRequestsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  password: string
+  cpf?: string | null
+  avatarUrl?: string | null
+  birthDate?: Date | string | null
+  onboardingCompleted?: boolean
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tokens?: Prisma.TokenUncheckedCreateNestedManyWithoutUserInput
+  professionalProfile?: Prisma.ProfessionalProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutServiceRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutServiceRequestsInput, Prisma.UserUncheckedCreateWithoutServiceRequestsInput>
+}
+
+export type UserUpsertWithoutServiceRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutServiceRequestsInput, Prisma.UserUncheckedUpdateWithoutServiceRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutServiceRequestsInput, Prisma.UserUncheckedCreateWithoutServiceRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutServiceRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutServiceRequestsInput, Prisma.UserUncheckedUpdateWithoutServiceRequestsInput>
+}
+
+export type UserUpdateWithoutServiceRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tokens?: Prisma.TokenUpdateManyWithoutUserNestedInput
+  professionalProfile?: Prisma.ProfessionalProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutServiceRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tokens?: Prisma.TokenUncheckedUpdateManyWithoutUserNestedInput
+  professionalProfile?: Prisma.ProfessionalProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -772,10 +772,12 @@ export type UserUncheckedUpdateWithoutOrganizationInput = {
 
 export type UserCountOutputType = {
   tokens: number
+  serviceRequests: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tokens?: boolean | UserCountOutputTypeCountTokensArgs
+  serviceRequests?: boolean | UserCountOutputTypeCountServiceRequestsArgs
 }
 
 /**
@@ -795,6 +797,13 @@ export type UserCountOutputTypeCountTokensArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.TokenWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountServiceRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ServiceRequestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -808,9 +817,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  organization?: boolean | Prisma.User$organizationArgs<ExtArgs>
   tokens?: boolean | Prisma.User$tokensArgs<ExtArgs>
-  userProfile?: boolean | Prisma.User$userProfileArgs<ExtArgs>
+  professionalProfile?: boolean | Prisma.User$professionalProfileArgs<ExtArgs>
+  serviceRequests?: boolean | Prisma.User$serviceRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -858,9 +867,9 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "cpf" | "avatarUrl" | "birthDate" | "onboardingCompleted" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  organization?: boolean | Prisma.User$organizationArgs<ExtArgs>
   tokens?: boolean | Prisma.User$tokensArgs<ExtArgs>
-  userProfile?: boolean | Prisma.User$userProfileArgs<ExtArgs>
+  professionalProfile?: boolean | Prisma.User$professionalProfileArgs<ExtArgs>
+  serviceRequests?: boolean | Prisma.User$serviceRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -869,9 +878,9 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    organization: Prisma.$OrganizationPayload<ExtArgs> | null
     tokens: Prisma.$TokenPayload<ExtArgs>[]
-    userProfile: Prisma.$UserProfilePayload<ExtArgs> | null
+    professionalProfile: Prisma.$ProfessionalProfilePayload<ExtArgs> | null
+    serviceRequests: Prisma.$ServiceRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1279,9 +1288,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  organization<T extends Prisma.User$organizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$organizationArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tokens<T extends Prisma.User$tokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  userProfile<T extends Prisma.User$userProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userProfileArgs<ExtArgs>>): Prisma.Prisma__UserProfileClient<runtime.Types.Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  professionalProfile<T extends Prisma.User$professionalProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$professionalProfileArgs<ExtArgs>>): Prisma.Prisma__ProfessionalProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfessionalProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  serviceRequests<T extends Prisma.User$serviceRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$serviceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1710,25 +1719,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.organization
- */
-export type User$organizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Organization
-   */
-  select?: Prisma.OrganizationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Organization
-   */
-  omit?: Prisma.OrganizationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrganizationInclude<ExtArgs> | null
-  where?: Prisma.OrganizationWhereInput
-}
-
-/**
  * User.tokens
  */
 export type User$tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1753,22 +1743,46 @@ export type User$tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 /**
- * User.userProfile
+ * User.professionalProfile
  */
-export type User$userProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$professionalProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserProfile
+   * Select specific fields to fetch from the ProfessionalProfile
    */
-  select?: Prisma.UserProfileSelect<ExtArgs> | null
+  select?: Prisma.ProfessionalProfileSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserProfile
+   * Omit specific fields from the ProfessionalProfile
    */
-  omit?: Prisma.UserProfileOmit<ExtArgs> | null
+  omit?: Prisma.ProfessionalProfileOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserProfileInclude<ExtArgs> | null
-  where?: Prisma.UserProfileWhereInput
+  include?: Prisma.ProfessionalProfileInclude<ExtArgs> | null
+  where?: Prisma.ProfessionalProfileWhereInput
+}
+
+/**
+ * User.serviceRequests
+ */
+export type User$serviceRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceRequest
+   */
+  select?: Prisma.ServiceRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ServiceRequest
+   */
+  omit?: Prisma.ServiceRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRequestInclude<ExtArgs> | null
+  where?: Prisma.ServiceRequestWhereInput
+  orderBy?: Prisma.ServiceRequestOrderByWithRelationInput | Prisma.ServiceRequestOrderByWithRelationInput[]
+  cursor?: Prisma.ServiceRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ServiceRequestScalarFieldEnum | Prisma.ServiceRequestScalarFieldEnum[]
 }
 
 /**

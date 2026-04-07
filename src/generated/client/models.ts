@@ -9,11 +9,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
-export type * from './models/UserProfile'
 export type * from './models/Token'
-export type * from './models/Organization'
-export type * from './models/Address'
-export type * from './models/Service'
-export type * from './models/Project'
-export type * from './models/Estimate'
+export type * from './models/ProfessionalProfile'
+export type * from './models/ServiceRequest'
+export type * from './models/ServiceAddress'
+export type * from './models/ServiceMatch'
 export type * from './commonInputTypes'

@@ -17,10 +17,23 @@ export const TokenType = {
 export type TokenType = (typeof TokenType)[keyof typeof TokenType]
 
 
-export const EstimateStatus = {
+export const ServiceStatus = {
+  SEARCHING: 'SEARCHING',
   PENDING: 'PENDING',
-  APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
+  ACCEPTED: 'ACCEPTED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELED: 'CANCELED'
 } as const
 
-export type EstimateStatus = (typeof EstimateStatus)[keyof typeof EstimateStatus]
+export type ServiceStatus = (typeof ServiceStatus)[keyof typeof ServiceStatus]
+
+
+export const MatchStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  IGNORED: 'IGNORED'
+} as const
+
+export type MatchStatus = (typeof MatchStatus)[keyof typeof MatchStatus]

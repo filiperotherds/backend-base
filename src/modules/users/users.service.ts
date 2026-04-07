@@ -12,11 +12,10 @@ export class UsersService {
         name: true,
         email: true,
         avatarUrl: true,
-        userProfile: {
+        professionalProfile: {
           select: {
             id: true,
           },
-          where: { userId: id },
         },
       },
       where: { id },
