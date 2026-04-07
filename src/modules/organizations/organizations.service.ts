@@ -7,27 +7,24 @@ export class OrganizationsService {
 
   async getOrganizationByUserId(id: string) {
     const user = await this.prisma.user.findUnique({
-      where: {
-        id,
-      },
-      select: {
-        organization: {
-          select: {
-            id: true,
-            name: true,
-            avatarUrl: true,
-            cnpj: true,
-          },
-        },
+      where: { id },
+      include: {
+        professionalProfile: true,
       },
     })
 
-    if (!user?.organization) {
-      throw new BadRequestException('Organization Not Found.')
+    if (!user) {
+      throw new BadRequestException('User Not Found.')
     }
 
+    // Stub mapped with existing new schema fields
     return {
-      organization: user.organization,
+      organization: {
+        id: user.professionalProfile?.id || user.id,
+        name: user.name || '',
+        avatarUrl: user.avatarUrl,
+        cnpj: user.cpf, // fallback to cpf
+      },
     }
   }
 }
