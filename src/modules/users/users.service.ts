@@ -23,4 +23,11 @@ export class UsersService {
 
     return user
   }
+
+  async updateUserAvatar(userId: string, avatarUrl: string | null) {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: { avatarUrl },
+    })
+  }
 }

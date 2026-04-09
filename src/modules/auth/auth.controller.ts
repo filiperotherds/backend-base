@@ -41,6 +41,8 @@ export class AuthController {
   async signin(@Body() body: SignInBodySchema) {
     const result = await this.authService.signin(body)
 
+    console.log('JWT Token:', result)
+
     return result
   }
 
