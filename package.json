@@ -34,7 +34,6 @@
     "resend": "^6.10.0",
     "rxjs": "^7.8.1",
     "slugify": "^1.6.6",
-    "twilio": "^5.10.6",
     "zod": "^4.1.12",
     "zod-validation-error": "^4.0.2"
   },
