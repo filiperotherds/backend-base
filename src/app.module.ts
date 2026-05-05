@@ -9,6 +9,7 @@ import { EstimatesModule } from './modules/estimates/estimates.module'
 import { MailModule } from './common/services/mail/mail.module'
 import { S3Module } from './common/services/s3/s3.module'
 import { UploadsModule } from './modules/uploads/uploads.module'
+import { ProfessionalModule } from './modules/professional/professional.module'
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UploadsModule } from './modules/uploads/uploads.module'
     MailModule,
     S3Module,
     UploadsModule,
+    ProfessionalModule,
   ],
   controllers: [],
   providers: [PrismaService],

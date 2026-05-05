@@ -149,6 +149,9 @@ model ServiceMatch {
   distanceKm      Float // Distância real calculada
 
   status MatchStatus @default(PENDING)
+  
+  bidValue     Float?    @map("bid_value")
+  proposedDate DateTime? @map("proposed_date")
 
   createdAt DateTime @default(now()) @map("created_at")
 

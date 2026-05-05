@@ -46,9 +46,7 @@ export class UpdateUserAvatarController {
     if (currentUser?.avatarUrl) {
       const oldKey = currentUser.avatarUrl.split('/uploads/').pop()
       if (oldKey) {
-        await this.s3Service.deleteFile(oldKey).catch(() => {
-          // Ignore error if file not found in S3
-        })
+        await this.s3Service.deleteFile(oldKey).catch(() => {})
       }
     }
 
@@ -71,9 +69,7 @@ export class UpdateUserAvatarController {
     if (currentUser?.avatarUrl) {
       const key = currentUser.avatarUrl.split('/uploads/').pop()
       if (key) {
-        await this.s3Service.deleteFile(key).catch(() => {
-          // Ignore error if file not found in S3
-        })
+        await this.s3Service.deleteFile(key).catch(() => {})
       }
     }
 

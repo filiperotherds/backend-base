@@ -29,11 +29,13 @@ export type AggregateServiceMatch = {
 export type ServiceMatchAvgAggregateOutputType = {
   similarityScore: number | null
   distanceKm: number | null
+  bidValue: number | null
 }
 
 export type ServiceMatchSumAggregateOutputType = {
   similarityScore: number | null
   distanceKm: number | null
+  bidValue: number | null
 }
 
 export type ServiceMatchMinAggregateOutputType = {
@@ -43,6 +45,8 @@ export type ServiceMatchMinAggregateOutputType = {
   similarityScore: number | null
   distanceKm: number | null
   status: $Enums.MatchStatus | null
+  bidValue: number | null
+  proposedDate: Date | null
   createdAt: Date | null
 }
 
@@ -53,6 +57,8 @@ export type ServiceMatchMaxAggregateOutputType = {
   similarityScore: number | null
   distanceKm: number | null
   status: $Enums.MatchStatus | null
+  bidValue: number | null
+  proposedDate: Date | null
   createdAt: Date | null
 }
 
@@ -63,6 +69,8 @@ export type ServiceMatchCountAggregateOutputType = {
   similarityScore: number
   distanceKm: number
   status: number
+  bidValue: number
+  proposedDate: number
   createdAt: number
   _all: number
 }
@@ -71,11 +79,13 @@ export type ServiceMatchCountAggregateOutputType = {
 export type ServiceMatchAvgAggregateInputType = {
   similarityScore?: true
   distanceKm?: true
+  bidValue?: true
 }
 
 export type ServiceMatchSumAggregateInputType = {
   similarityScore?: true
   distanceKm?: true
+  bidValue?: true
 }
 
 export type ServiceMatchMinAggregateInputType = {
@@ -85,6 +95,8 @@ export type ServiceMatchMinAggregateInputType = {
   similarityScore?: true
   distanceKm?: true
   status?: true
+  bidValue?: true
+  proposedDate?: true
   createdAt?: true
 }
 
@@ -95,6 +107,8 @@ export type ServiceMatchMaxAggregateInputType = {
   similarityScore?: true
   distanceKm?: true
   status?: true
+  bidValue?: true
+  proposedDate?: true
   createdAt?: true
 }
 
@@ -105,6 +119,8 @@ export type ServiceMatchCountAggregateInputType = {
   similarityScore?: true
   distanceKm?: true
   status?: true
+  bidValue?: true
+  proposedDate?: true
   createdAt?: true
   _all?: true
 }
@@ -202,6 +218,8 @@ export type ServiceMatchGroupByOutputType = {
   similarityScore: number
   distanceKm: number
   status: $Enums.MatchStatus
+  bidValue: number | null
+  proposedDate: Date | null
   createdAt: Date
   _count: ServiceMatchCountAggregateOutputType | null
   _avg: ServiceMatchAvgAggregateOutputType | null
@@ -235,6 +253,8 @@ export type ServiceMatchWhereInput = {
   similarityScore?: Prisma.FloatFilter<"ServiceMatch"> | number
   distanceKm?: Prisma.FloatFilter<"ServiceMatch"> | number
   status?: Prisma.EnumMatchStatusFilter<"ServiceMatch"> | $Enums.MatchStatus
+  bidValue?: Prisma.FloatNullableFilter<"ServiceMatch"> | number | null
+  proposedDate?: Prisma.DateTimeNullableFilter<"ServiceMatch"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ServiceMatch"> | Date | string
   serviceRequest?: Prisma.XOR<Prisma.ServiceRequestScalarRelationFilter, Prisma.ServiceRequestWhereInput>
   professional?: Prisma.XOR<Prisma.ProfessionalProfileScalarRelationFilter, Prisma.ProfessionalProfileWhereInput>
@@ -247,6 +267,8 @@ export type ServiceMatchOrderByWithRelationInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrderInput | Prisma.SortOrder
+  proposedDate?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   serviceRequest?: Prisma.ServiceRequestOrderByWithRelationInput
   professional?: Prisma.ProfessionalProfileOrderByWithRelationInput
@@ -263,6 +285,8 @@ export type ServiceMatchWhereUniqueInput = Prisma.AtLeast<{
   similarityScore?: Prisma.FloatFilter<"ServiceMatch"> | number
   distanceKm?: Prisma.FloatFilter<"ServiceMatch"> | number
   status?: Prisma.EnumMatchStatusFilter<"ServiceMatch"> | $Enums.MatchStatus
+  bidValue?: Prisma.FloatNullableFilter<"ServiceMatch"> | number | null
+  proposedDate?: Prisma.DateTimeNullableFilter<"ServiceMatch"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ServiceMatch"> | Date | string
   serviceRequest?: Prisma.XOR<Prisma.ServiceRequestScalarRelationFilter, Prisma.ServiceRequestWhereInput>
   professional?: Prisma.XOR<Prisma.ProfessionalProfileScalarRelationFilter, Prisma.ProfessionalProfileWhereInput>
@@ -275,6 +299,8 @@ export type ServiceMatchOrderByWithAggregationInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrderInput | Prisma.SortOrder
+  proposedDate?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ServiceMatchCountOrderByAggregateInput
   _avg?: Prisma.ServiceMatchAvgOrderByAggregateInput
@@ -293,6 +319,8 @@ export type ServiceMatchScalarWhereWithAggregatesInput = {
   similarityScore?: Prisma.FloatWithAggregatesFilter<"ServiceMatch"> | number
   distanceKm?: Prisma.FloatWithAggregatesFilter<"ServiceMatch"> | number
   status?: Prisma.EnumMatchStatusWithAggregatesFilter<"ServiceMatch"> | $Enums.MatchStatus
+  bidValue?: Prisma.FloatNullableWithAggregatesFilter<"ServiceMatch"> | number | null
+  proposedDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ServiceMatch"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ServiceMatch"> | Date | string
 }
 
@@ -301,6 +329,8 @@ export type ServiceMatchCreateInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
   serviceRequest: Prisma.ServiceRequestCreateNestedOneWithoutProfessionalMatchesInput
   professional: Prisma.ProfessionalProfileCreateNestedOneWithoutMatchesInput
@@ -313,6 +343,8 @@ export type ServiceMatchUncheckedCreateInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -321,6 +353,8 @@ export type ServiceMatchUpdateInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceRequest?: Prisma.ServiceRequestUpdateOneRequiredWithoutProfessionalMatchesNestedInput
   professional?: Prisma.ProfessionalProfileUpdateOneRequiredWithoutMatchesNestedInput
@@ -333,6 +367,8 @@ export type ServiceMatchUncheckedUpdateInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -343,6 +379,8 @@ export type ServiceMatchCreateManyInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -351,6 +389,8 @@ export type ServiceMatchUpdateManyMutationInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -361,6 +401,8 @@ export type ServiceMatchUncheckedUpdateManyInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -386,12 +428,15 @@ export type ServiceMatchCountOrderByAggregateInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrder
+  proposedDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type ServiceMatchAvgOrderByAggregateInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrder
 }
 
 export type ServiceMatchMaxOrderByAggregateInput = {
@@ -401,6 +446,8 @@ export type ServiceMatchMaxOrderByAggregateInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrder
+  proposedDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -411,12 +458,15 @@ export type ServiceMatchMinOrderByAggregateInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrder
+  proposedDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type ServiceMatchSumOrderByAggregateInput = {
   similarityScore?: Prisma.SortOrder
   distanceKm?: Prisma.SortOrder
+  bidValue?: Prisma.SortOrder
 }
 
 export type ServiceMatchCreateNestedManyWithoutProfessionalInput = {
@@ -512,6 +562,8 @@ export type ServiceMatchCreateWithoutProfessionalInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
   serviceRequest: Prisma.ServiceRequestCreateNestedOneWithoutProfessionalMatchesInput
 }
@@ -522,6 +574,8 @@ export type ServiceMatchUncheckedCreateWithoutProfessionalInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -561,6 +615,8 @@ export type ServiceMatchScalarWhereInput = {
   similarityScore?: Prisma.FloatFilter<"ServiceMatch"> | number
   distanceKm?: Prisma.FloatFilter<"ServiceMatch"> | number
   status?: Prisma.EnumMatchStatusFilter<"ServiceMatch"> | $Enums.MatchStatus
+  bidValue?: Prisma.FloatNullableFilter<"ServiceMatch"> | number | null
+  proposedDate?: Prisma.DateTimeNullableFilter<"ServiceMatch"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ServiceMatch"> | Date | string
 }
 
@@ -569,6 +625,8 @@ export type ServiceMatchCreateWithoutServiceRequestInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
   professional: Prisma.ProfessionalProfileCreateNestedOneWithoutMatchesInput
 }
@@ -579,6 +637,8 @@ export type ServiceMatchUncheckedCreateWithoutServiceRequestInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -614,6 +674,8 @@ export type ServiceMatchCreateManyProfessionalInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -622,6 +684,8 @@ export type ServiceMatchUpdateWithoutProfessionalInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceRequest?: Prisma.ServiceRequestUpdateOneRequiredWithoutProfessionalMatchesNestedInput
 }
@@ -632,6 +696,8 @@ export type ServiceMatchUncheckedUpdateWithoutProfessionalInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -641,6 +707,8 @@ export type ServiceMatchUncheckedUpdateManyWithoutProfessionalInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -650,6 +718,8 @@ export type ServiceMatchCreateManyServiceRequestInput = {
   similarityScore: number
   distanceKm: number
   status?: $Enums.MatchStatus
+  bidValue?: number | null
+  proposedDate?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -658,6 +728,8 @@ export type ServiceMatchUpdateWithoutServiceRequestInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   professional?: Prisma.ProfessionalProfileUpdateOneRequiredWithoutMatchesNestedInput
 }
@@ -668,6 +740,8 @@ export type ServiceMatchUncheckedUpdateWithoutServiceRequestInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -677,6 +751,8 @@ export type ServiceMatchUncheckedUpdateManyWithoutServiceRequestInput = {
   similarityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   distanceKm?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumMatchStatusFieldUpdateOperationsInput | $Enums.MatchStatus
+  bidValue?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  proposedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -689,6 +765,8 @@ export type ServiceMatchSelect<ExtArgs extends runtime.Types.Extensions.Internal
   similarityScore?: boolean
   distanceKm?: boolean
   status?: boolean
+  bidValue?: boolean
+  proposedDate?: boolean
   createdAt?: boolean
   serviceRequest?: boolean | Prisma.ServiceRequestDefaultArgs<ExtArgs>
   professional?: boolean | Prisma.ProfessionalProfileDefaultArgs<ExtArgs>
@@ -701,6 +779,8 @@ export type ServiceMatchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   similarityScore?: boolean
   distanceKm?: boolean
   status?: boolean
+  bidValue?: boolean
+  proposedDate?: boolean
   createdAt?: boolean
   serviceRequest?: boolean | Prisma.ServiceRequestDefaultArgs<ExtArgs>
   professional?: boolean | Prisma.ProfessionalProfileDefaultArgs<ExtArgs>
@@ -713,6 +793,8 @@ export type ServiceMatchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   similarityScore?: boolean
   distanceKm?: boolean
   status?: boolean
+  bidValue?: boolean
+  proposedDate?: boolean
   createdAt?: boolean
   serviceRequest?: boolean | Prisma.ServiceRequestDefaultArgs<ExtArgs>
   professional?: boolean | Prisma.ProfessionalProfileDefaultArgs<ExtArgs>
@@ -725,10 +807,12 @@ export type ServiceMatchSelectScalar = {
   similarityScore?: boolean
   distanceKm?: boolean
   status?: boolean
+  bidValue?: boolean
+  proposedDate?: boolean
   createdAt?: boolean
 }
 
-export type ServiceMatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceRequestId" | "professionalProfileId" | "similarityScore" | "distanceKm" | "status" | "createdAt", ExtArgs["result"]["serviceMatch"]>
+export type ServiceMatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceRequestId" | "professionalProfileId" | "similarityScore" | "distanceKm" | "status" | "bidValue" | "proposedDate" | "createdAt", ExtArgs["result"]["serviceMatch"]>
 export type ServiceMatchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   serviceRequest?: boolean | Prisma.ServiceRequestDefaultArgs<ExtArgs>
   professional?: boolean | Prisma.ProfessionalProfileDefaultArgs<ExtArgs>
@@ -755,6 +839,8 @@ export type $ServiceMatchPayload<ExtArgs extends runtime.Types.Extensions.Intern
     similarityScore: number
     distanceKm: number
     status: $Enums.MatchStatus
+    bidValue: number | null
+    proposedDate: Date | null
     createdAt: Date
   }, ExtArgs["result"]["serviceMatch"]>
   composites: {}
@@ -1187,6 +1273,8 @@ export interface ServiceMatchFieldRefs {
   readonly similarityScore: Prisma.FieldRef<"ServiceMatch", 'Float'>
   readonly distanceKm: Prisma.FieldRef<"ServiceMatch", 'Float'>
   readonly status: Prisma.FieldRef<"ServiceMatch", 'MatchStatus'>
+  readonly bidValue: Prisma.FieldRef<"ServiceMatch", 'Float'>
+  readonly proposedDate: Prisma.FieldRef<"ServiceMatch", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"ServiceMatch", 'DateTime'>
 }
     

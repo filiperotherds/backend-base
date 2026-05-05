@@ -154,6 +154,8 @@ export const ServiceMatchScalarFieldEnum = {
   similarityScore: 'similarityScore',
   distanceKm: 'distanceKm',
   status: 'status',
+  bidValue: 'bidValue',
+  proposedDate: 'proposedDate',
   createdAt: 'createdAt'
 } as const
 
