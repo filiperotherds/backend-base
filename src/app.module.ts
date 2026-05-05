@@ -10,6 +10,7 @@ import { MailModule } from './common/services/mail/mail.module'
 import { S3Module } from './common/services/s3/s3.module'
 import { UploadsModule } from './modules/uploads/uploads.module'
 import { ProfessionalModule } from './modules/professional/professional.module'
+import { AiModule } from './modules/ai/ai.module'
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ProfessionalModule } from './modules/professional/professional.module'
     S3Module,
     UploadsModule,
     ProfessionalModule,
+    AiModule,
   ],
   controllers: [],
   providers: [PrismaService],
